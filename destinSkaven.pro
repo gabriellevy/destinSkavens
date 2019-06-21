@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui sql widgets multimedia
 
 TARGET = destinSkaven
 TEMPLATE = app
@@ -23,13 +21,75 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG += resources_big
 
 SOURCES += \
+    ../destinLib/theme.cpp \
+    ../destinLib/univers.cpp \
+    ../destinLib/histoire.cpp \
+    ../destinLib/carac.cpp \
+    ../destinLib/condition.cpp \
+    ../destinLib/noeud.cpp \
+    ../destinLib/effet.cpp \
+    ../destinLib/choix.cpp \
+    ../destinLib/evt.cpp \
+    ../destinLib/evt.h \
+    ../destinLib/genevt.cpp \
+    ../destinLib/execevt.cpp \
+    ../destinLib/glisseur.cpp \
+    ../destinLib/exechistoire.cpp \
+    ../destinLib/execeffet.cpp \
+    ../destinLib/execchoix.cpp \
+    ../destinLib/execnoeud.cpp \
+    ../destinLib/genhistoire.cpp \
+    ../destinLib/perso.cpp \
+    ../destinLib/setcarac.cpp \
+    ../destinLib/evtaleatoire.cpp \
+    ../destinLib/reglages.cpp \
+    ../destinLib/dbmanager.cpp \
+    ../destinLib/selectionneurdevenement.cpp \
+    aspectratiolabel.cpp \
+    genhistskaven.cpp \
         main.cpp \
         universskaven.cpp
 
 HEADERS += \
+    ../destinLib/theme.h \
+    ../destinLib/univers.h \
+    ../destinLib/histoire.h \
+    ../destinLib/carac.h \
+    ../destinLib/condition.h \
+    ../destinLib/noeud.h \
+    ../destinLib/effet.h \
+    ../destinLib/choix.h \
+    ../destinLib/evt.h \
+    ../destinLib/genevt.h \
+    ../destinLib/execevt.h \
+    ../destinLib/glisseur.h \
+    ../destinLib/exechistoire.h \
+    ../destinLib/execeffet.h \
+    ../destinLib/execchoix.h \
+    ../destinLib/execnoeud.h \
+    ../destinLib/genhistoire.h \
+    ../destinLib/perso.h \
+    ../destinLib/setcarac.h \
+    ../destinLib/evtaleatoire.h \
+    ../destinLib/reglages.h \
+    ../destinLib/dbmanager.h \
+    ../destinLib/selectionneurdevenement.h \
+    aspectratiolabel.h \
+    genhistskaven.h \
         universskaven.h
+
+FORMS += \
+    ../destinLib/univers.ui \
+    ../destinLib/carac.ui \
+    ../destinLib/choix.ui \
+    ../destinLib/effet.ui \
+    ../destinLib/evt.ui \
+    ../destinLib/histoire.ui \
+    ../destinLib/noeud.ui \
+    ../destinLib/perso.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
