@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/skaven01.png</file>
+    </qresource>
+</RCC>

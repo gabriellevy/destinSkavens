@@ -15,6 +15,8 @@ public:
 
     Hist* ExecuterGenerateurHistoire();
 
+    QString GenererNomSkaven();
+
 protected:
     // génère toutes les caracs qui peuvent être visualisées par le joueur (d'autres caracs peuvent être générées et invisibles n'importe quand dans l'aventure)
     virtual void GenererCaracs();

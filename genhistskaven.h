@@ -3,6 +3,7 @@
 
 #include "../destinLib/genhistoire.h"
 
+class UniversSkaven;
 
 class GenHistSkaven : public GenHistoire
 {
@@ -15,6 +16,8 @@ public:
     GenHistSkaven(Hist* histoireGeneree);
 
     virtual Hist* GenererHistoire();
+
+    UniversSkaven* GetUniversSkaven();
 };
 
 #endif // GENHISTSKAVEN_H

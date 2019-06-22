@@ -1,5 +1,6 @@
 #include "genhistskaven.h"
 #include "../destinLib/perso.h"
+#include "universskaven.h"
 
 GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree)
 {
@@ -22,10 +23,16 @@ Hist* GenHistSkaven::GenererHistoire()
     return m_HistoireGeneree;
 }
 
+UniversSkaven* GenHistSkaven::GetUniversSkaven()
+{
+    return static_cast<UniversSkaven*>(Univers::ME);
+}
+
 void GenHistSkaven::GenererPersos()
 {
-    DPerso* reveur = new DPerso("reveur", "Rêveur");
-    IPerso::AjouterPersoJouable(reveur);
+    QString nom = GetUniversSkaven()->GenererNomSkaven();
+    DPerso* perso = new DPerso("heros", nom, nom, ":/images/skaven01.png");
+    IPerso::AjouterPersoJouable(perso);
 }
 
 void GenHistSkaven::GenererEvtsAccueil()
