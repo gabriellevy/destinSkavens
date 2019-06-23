@@ -1,6 +1,7 @@
 #include "genhistskaven.h"
 #include "../destinLib/perso.h"
 #include "universskaven.h"
+#include "dpersoskaven.h"
 
 GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree)
 {
@@ -30,8 +31,7 @@ UniversSkaven* GenHistSkaven::GetUniversSkaven()
 
 void GenHistSkaven::GenererPersos()
 {
-    QString nom = GetUniversSkaven()->GenererNomSkaven();
-    DPerso* perso = new DPerso("heros", nom, nom, ":/images/skaven01.png");
+    DPersoSkaven* perso = new DPersoSkaven();
     IPerso::AjouterPersoJouable(perso);
 }
 

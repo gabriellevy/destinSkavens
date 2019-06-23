@@ -1,5 +1,40 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/skaven01.png</file>
+        <file>images/portraits/eschin01.jpg</file>
+        <file>images/portraits/eschin02.jpg</file>
+        <file>images/portraits/eschin03.jpg</file>
+        <file>images/portraits/eschin04.jpg</file>
+        <file>images/portraits/eschin05.jpg</file>
+        <file>images/portraits/guerrier01.jpg</file>
+        <file>images/portraits/guerrier02.jpg</file>
+        <file>images/portraits/guerrier03.jpg</file>
+        <file>images/portraits/guerrier04.jpg</file>
+        <file>images/portraits/guerrier05.jpg</file>
+        <file>images/portraits/guerrier06.jpg</file>
+        <file>images/portraits/guerrier07.jpg</file>
+        <file>images/portraits/guerrier08.jpg</file>
+        <file>images/portraits/guerrier09.jpg</file>
+        <file>images/portraits/guerrier10.jpg</file>
+        <file>images/portraits/ingénieur01.jpg</file>
+        <file>images/portraits/ingénieur02.jpg</file>
+        <file>images/portraits/ingénieur03.jpg</file>
+        <file>images/portraits/moulder01.jpg</file>
+        <file>images/portraits/peste01.jpg</file>
+        <file>images/portraits/peste02.jpg</file>
+        <file>images/portraits/peste03.jpg</file>
+        <file>images/portraits/prophète01.jpg</file>
+        <file>images/portraits/prophète02.jpg</file>
+        <file>images/portraits/prophète03.jpg</file>
+        <file>images/portraits/skaven01.png</file>
+        <file>images/portraits/skaven02.png</file>
+        <file>images/portraits/skaven03.jpg</file>
+        <file>images/portraits/skaven04.jpg</file>
+        <file>images/portraits/skaven05.jpg</file>
+        <file>images/portraits/skaven06.jpg</file>
+        <file>images/portraits/skaven07.jpg</file>
+        <file>images/portraits/vermine01.jpg</file>
+        <file>images/portraits/vermine02.jpg</file>
+        <file>images/portraits/vermine03.jpg</file>
+        <file>images/portraits/vermine04.jpg</file>
     </qresource>
 </RCC>

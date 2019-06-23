@@ -27,6 +27,33 @@ Hist* UniversSkaven::ExecuterGenerateurHistoire()
     return m_Histoire;
 }
 
+Clan UniversSkaven::GenererClan()
+{
+    QVector<Clan> clans = {
+        Rictus,
+        Mors,
+        Skab,
+        Pestilens,
+        Septik,
+        Skrat,
+        Gratzz,
+        Morbidus,
+        Scorbut,
+        Krizzor,
+        Liskit,
+        Festus,
+        Raklur,
+        Eshin,
+        Moulder,
+        Skyre,
+        Mordkin,
+        Grutnik,
+        Charogne,
+        Volkn
+    };
+    return clans[rand() % clans.length()];
+}
+
 QString UniversSkaven::GenererNomSkaven()
 {
     QStringList noms = {

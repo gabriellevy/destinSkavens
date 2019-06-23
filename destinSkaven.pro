@@ -49,6 +49,7 @@ SOURCES += \
     ../destinLib/dbmanager.cpp \
     ../destinLib/selectionneurdevenement.cpp \
     aspectratiolabel.cpp \
+    dpersoskaven.cpp \
     genhistskaven.cpp \
         main.cpp \
         universskaven.cpp
@@ -78,6 +79,7 @@ HEADERS += \
     ../destinLib/dbmanager.h \
     ../destinLib/selectionneurdevenement.h \
     aspectratiolabel.h \
+    dpersoskaven.h \
     genhistskaven.h \
         universskaven.h
 
