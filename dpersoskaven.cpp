@@ -1,6 +1,7 @@
 #include "dpersoskaven.h"
 #include "universskaven.h"
 #include "clan.h"
+#include "profession.h"
 
 DPersoSkaven::DPersoSkaven()
 {
@@ -8,8 +9,10 @@ DPersoSkaven::DPersoSkaven()
     this->m_Nom = GetUniversSkaven()->GenererNomSkaven();
 
     this->m_Clan = GetUniversSkaven()->ChoisirClan();
+    this->m_Profession = new Profession();
 
     this->DeduireImage();
+
     std::srand(time(nullptr));
 }
 
@@ -22,6 +25,77 @@ void DPersoSkaven::DeduireImage()
 {
     this->m_CheminImagePortrait = "";
     // image spécial selon le métier
+    switch (this->m_Profession->m_TypeProfession) {
+    case TypeProfession::Guerrier_des_clans :
+    {
+        QStringList chemins = {
+            ":/images/portraits/guerrier01.jpg",
+            ":/images/portraits/guerrier02.jpg",
+            ":/images/portraits/guerrier03.jpg",
+            ":/images/portraits/guerrier04.jpg",
+            ":/images/portraits/guerrier05.jpg",
+            ":/images/portraits/guerrier06.jpg",
+            ":/images/portraits/guerrier07.jpg",
+            ":/images/portraits/guerrier08.jpg",
+            ":/images/portraits/guerrier09.jpg",
+            ":/images/portraits/guerrier10.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Ingenieur :
+    case TypeProfession::Technomage :{
+        QStringList chemins = {
+            ":/images/portraits/ingénieur01.jpg",
+            ":/images/portraits/ingénieur02.jpg",
+            ":/images/portraits/ingénieur03.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Pretre_de_la_peste :{
+        QStringList chemins = {
+            ":/images/portraits/peste01.jpg",
+            ":/images/portraits/peste02.jpg",
+            ":/images/portraits/peste03.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Vermine_de_choc : {
+        QStringList chemins = {
+            ":/images/portraits/vermine01.jpg",
+            ":/images/portraits/vermine02.jpg",
+            ":/images/portraits/vermine03.jpg",
+            ":/images/portraits/vermine04.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Prophete_gris : {
+        QStringList chemins = {
+            ":/images/portraits/prophète01.jpg",
+            ":/images/portraits/prophète02.jpg",
+            ":/images/portraits/prophète03.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Maitre_corrupteur :
+    case TypeProfession::Chef_de_meute : {
+        QStringList chemins = {
+            ":/images/portraits/moulder01.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    case TypeProfession::Coureur_d_egouts :
+    case TypeProfession::Assassin : {
+        QStringList chemins = {
+            ":/images/portraits/eschin01.jpg",
+            ":/images/portraits/eschin02.jpg",
+            ":/images/portraits/eschin03.jpg",
+            ":/images/portraits/eschin04.jpg",
+            ":/images/portraits/eschin05.jpg"
+        };
+        this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
+    }break;
+    default : break;
+    }
 
     // si aucune alors image spéciale selon le clan :
     if ( this->m_CheminImagePortrait == "" )
@@ -51,6 +125,10 @@ void DPersoSkaven::DeduireImage()
             };
             this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
         } break;
+
+        default :  {
+
+        }break;
 
         }
     }

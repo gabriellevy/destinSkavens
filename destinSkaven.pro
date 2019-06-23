@@ -52,6 +52,7 @@ SOURCES += \
     aspectratiolabel.cpp \
     dpersoskaven.cpp \
     genhistskaven.cpp \
+    profession.cpp \
     universskaven.cpp \
     main.cpp
 
@@ -83,6 +84,7 @@ HEADERS += \
     clan.h \
     dpersoskaven.h \
     genhistskaven.h \
+    profession.h \
     universskaven.h
 
 FORMS += \

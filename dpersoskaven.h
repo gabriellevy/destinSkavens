@@ -5,6 +5,7 @@
 
 
 class Clan;
+class Profession;
 
 class UniversSkaven;
 
@@ -20,6 +21,7 @@ public:
     DPersoSkaven();
 
     Clan* m_Clan = nullptr;
+    Profession* m_Profession = nullptr;
 
     UniversSkaven* GetUniversSkaven();
     void DeduireImage();

@@ -1,6 +1,7 @@
 #include "universskaven.h"
 #include "ui_univers.h"
 #include "clan.h"
+#include <QTime>
 
 UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
                          QWidget *parent)
@@ -8,7 +9,8 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
 {
     this->AppliquerTheme(QColor(180, 180, 210));
 
-    std::srand(time(nullptr));
+    QTime time = QTime::currentTime();
+    qsrand(static_cast<uint>(time.msec()));
 
     this->GenererTousLesClans();
 }
