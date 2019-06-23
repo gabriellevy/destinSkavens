@@ -48,11 +48,12 @@ SOURCES += \
     ../destinLib/reglages.cpp \
     ../destinLib/dbmanager.cpp \
     ../destinLib/selectionneurdevenement.cpp \
+    clan.cpp \
     aspectratiolabel.cpp \
     dpersoskaven.cpp \
     genhistskaven.cpp \
-        main.cpp \
-        universskaven.cpp
+    universskaven.cpp \
+    main.cpp
 
 HEADERS += \
     ../destinLib/theme.h \
@@ -79,9 +80,10 @@ HEADERS += \
     ../destinLib/dbmanager.h \
     ../destinLib/selectionneurdevenement.h \
     aspectratiolabel.h \
+    clan.h \
     dpersoskaven.h \
     genhistskaven.h \
-        universskaven.h
+    universskaven.h
 
 FORMS += \
     ../destinLib/univers.ui \

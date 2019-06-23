@@ -1,9 +1,12 @@
 #ifndef DPERSOSKAVEN_H
 #define DPERSOSKAVEN_H
 
-#include <QString>
 #include "../destinLib/perso.h"
-#include "universskaven.h"
+
+
+class Clan;
+
+class UniversSkaven;
 
 struct Metier {
     QString nom;
@@ -16,7 +19,7 @@ class DPersoSkaven : public DPerso
 public:
     DPersoSkaven();
 
-    Clan m_Clan;
+    Clan* m_Clan = nullptr;
 
     UniversSkaven* GetUniversSkaven();
     void DeduireImage();

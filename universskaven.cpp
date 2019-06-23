@@ -1,8 +1,6 @@
 #include "universskaven.h"
-#include "../destinLib/perso.h"
 #include "ui_univers.h"
-#include "genhistskaven.h"
-#include <QVector>
+#include "clan.h"
 
 UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
                          QWidget *parent)
@@ -11,6 +9,8 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
     this->AppliquerTheme(QColor(180, 180, 210));
 
     std::srand(time(nullptr));
+
+    this->GenererTousLesClans();
 }
 
 void UniversSkaven::GenererCaracs()
@@ -27,31 +27,33 @@ Hist* UniversSkaven::ExecuterGenerateurHistoire()
     return m_Histoire;
 }
 
-Clan UniversSkaven::GenererClan()
+void UniversSkaven::GenererTousLesClans()
 {
-    QVector<Clan> clans = {
-        Rictus,
-        Mors,
-        Skab,
-        Pestilens,
-        Septik,
-        Skrat,
-        Gratzz,
-        Morbidus,
-        Scorbut,
-        Krizzor,
-        Liskit,
-        Festus,
-        Raklur,
-        Eshin,
-        Moulder,
-        Skyre,
-        Mordkin,
-        Grutnik,
-        Charogne,
-        Volkn
-    };
-    return clans[rand() % clans.length()];
+    m_TousLesClans.push_back(new Clan(TypeClan::Rictus, "Rictus"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Mors, "Mors"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Skab, "Skab"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Pestilens, "Pestilens"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Septik, "Septik"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Skrat, "Skrat"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Gratzz, "Gratzz"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Morbidus, "Morbidus"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Scorbut, "Scorbut"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Krizzor, "Krizzor"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Liskit, "Liskit"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Festus, "Festus"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Raklur, "Raklur"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Eshin, "Eshin"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Moulder, "Moulder"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Skyre, "Skyre"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Mordkin, "Mordkin"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Grutnik, "Grutnik"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Charogne, "Charogne"));
+    m_TousLesClans.push_back(new Clan(TypeClan::Volkn, "Volkn"));
+}
+
+Clan* UniversSkaven::ChoisirClan()
+{
+    return m_TousLesClans[rand() % m_TousLesClans.length()];
 }
 
 QString UniversSkaven::GenererNomSkaven()

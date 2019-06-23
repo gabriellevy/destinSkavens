@@ -1,5 +1,4 @@
 #include "genhistskaven.h"
-#include "../destinLib/perso.h"
 #include "universskaven.h"
 #include "dpersoskaven.h"
 
@@ -38,6 +37,6 @@ void GenHistSkaven::GenererPersos()
 void GenHistSkaven::GenererEvtsAccueil()
 {
     /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
-    Effet* intro =this->m_GenerateurEvt->AjouterEffetNarration( "Choisissez votre personnage");
+    /*Effet* intro =*/this->m_GenerateurEvt->AjouterEffetNarration( "Choisissez votre personnage");
 
 }
