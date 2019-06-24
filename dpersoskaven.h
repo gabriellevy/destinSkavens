@@ -20,6 +20,8 @@ class DPersoSkaven : public DPerso
 public:
     DPersoSkaven();
 
+    void InitialiserPerso();
+
     Clan* m_Clan = nullptr;
     Profession* m_Profession = nullptr;
 

@@ -36,5 +36,24 @@
         <file>images/portraits/vermine02.jpg</file>
         <file>images/portraits/vermine03.jpg</file>
         <file>images/portraits/vermine04.jpg</file>
+        <file>images/clans/Rictus.jpg</file>
+        <file>images/clans/Eshin.png</file>
+        <file>images/clans/Festus.jpg</file>
+        <file>images/clans/Gratzz.jpg</file>
+        <file>images/clans/Grutnik.png</file>
+        <file>images/clans/Krizzor.jpg</file>
+        <file>images/clans/Liskit.jpg</file>
+        <file>images/clans/Morbidus.png</file>
+        <file>images/clans/Mordkin.png</file>
+        <file>images/clans/Mors.jpg</file>
+        <file>images/clans/Moulder.jpg</file>
+        <file>images/clans/Pestilens.png</file>
+        <file>images/clans/Raklur.jpg</file>
+        <file>images/clans/Scorbut.jpg</file>
+        <file>images/clans/Septik.jpg</file>
+        <file>images/clans/Skab.png</file>
+        <file>images/clans/Skrat.jpg</file>
+        <file>images/clans/Skyre.png</file>
+        <file>images/clans/Volkn.jpg</file>
     </qresource>
 </RCC>

@@ -2,18 +2,31 @@
 #include "universskaven.h"
 #include "clan.h"
 #include "profession.h"
+#include "../destinLib/carac.h"
 
 DPersoSkaven::DPersoSkaven()
+{
+    std::srand(time(nullptr));
+}
+
+void DPersoSkaven::InitialiserPerso()
 {
     // génération aléatoire du perso :
     this->m_Nom = GetUniversSkaven()->GenererNomSkaven();
 
     this->m_Clan = GetUniversSkaven()->ChoisirClan();
+    Carac* carac = new Carac(UniversSkaven::CARAC_CLAN,
+                             UniversSkaven::CARAC_CLAN,
+                             this->m_Clan->m_Nom,
+                             this->m_Clan->m_CheminBanniere,
+                             this->m_Clan->m_Description,
+                             MODE_AFFICHAGE::ma_Img);
+    Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_CLAN);
+
     this->m_Profession = new Profession();
 
     this->DeduireImage();
-
-    std::srand(time(nullptr));
 }
 
 UniversSkaven* DPersoSkaven::GetUniversSkaven()

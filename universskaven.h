@@ -3,6 +3,7 @@
 
 #include "../destinLib/univers.h"
 #include "genhistskaven.h"
+#include "clan.h"
 
 class Clan;
 
@@ -19,7 +20,11 @@ public:
     QString GenererNomSkaven();
     Clan* ChoisirClan();
 
+    void GenererClan(TypeClan typeClan, QString nom, QString description, QString chemin);
     void GenererTousLesClans();
+
+    // identifiants de caracs importantes :
+    static QString CARAC_CLAN;
 
 protected:
     // génère toutes les caracs qui peuvent être visualisées par le joueur (d'autres caracs peuvent être générées et invisibles n'importe quand dans l'aventure)

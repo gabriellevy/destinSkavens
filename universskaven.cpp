@@ -1,6 +1,5 @@
 #include "universskaven.h"
 #include "ui_univers.h"
-#include "clan.h"
 #include <QTime>
 
 UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
@@ -11,12 +10,13 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
 
     QTime time = QTime::currentTime();
     qsrand(static_cast<uint>(time.msec()));
-
-    this->GenererTousLesClans();
 }
+
+QString UniversSkaven::CARAC_CLAN = "Clan";
 
 void UniversSkaven::GenererCaracs()
 {
+    GenererTousLesClans();
 }
 
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
@@ -26,31 +26,97 @@ Hist* UniversSkaven::ExecuterGenerateurHistoire()
     m_GenHistoire->GenererHistoire();
     this->setWindowTitle(m_Histoire->m_Titre);
 
+    this->GenererCaracs();
+
     return m_Histoire;
+}
+
+void UniversSkaven::GenererClan(TypeClan typeClan, QString nom, QString description, QString chemin)
+{
+    if ( description == "")
+        description = "Clan " + nom;
+    Clan* clan = new Clan(typeClan, nom, description, chemin);
+    m_TousLesClans.push_back(clan);
 }
 
 void UniversSkaven::GenererTousLesClans()
 {
-    m_TousLesClans.push_back(new Clan(TypeClan::Rictus, "Rictus"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Mors, "Mors"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Skab, "Skab"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Pestilens, "Pestilens"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Septik, "Septik"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Skrat, "Skrat"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Gratzz, "Gratzz"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Morbidus, "Morbidus"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Scorbut, "Scorbut"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Krizzor, "Krizzor"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Liskit, "Liskit"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Festus, "Festus"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Raklur, "Raklur"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Eshin, "Eshin"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Moulder, "Moulder"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Skyre, "Skyre"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Mordkin, "Mordkin"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Grutnik, "Grutnik"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Charogne, "Charogne"));
-    m_TousLesClans.push_back(new Clan(TypeClan::Volkn, "Volkn"));
+    this->GenererClan(TypeClan::Rictus,
+                      "Rictus",
+                      "Le Mont Bossu est actuellement sous la coupe du Seigneur Kratch, chef de l’un des Clans Guerriers les plus importants.",
+                      ":/images/clans/Rictus.jpg");
+    this->GenererClan(TypeClan::Mors,
+                      "Mors",
+                      "",
+                      ":/images/clans/Mors.jpg");
+    this->GenererClan(TypeClan::Skab,
+                      "Skab",
+                      "",
+                      ":/images/clans/Skab.png");
+    this->GenererClan(TypeClan::Pestilens,
+                      "Pestilens",
+                      "",
+                      ":/images/clans/Pestilens.png");
+    this->GenererClan(TypeClan::Septik,
+                      "Septik",
+                      "",
+                      ":/images/clans/Septik.jpg");
+    this->GenererClan(TypeClan::Skrat,
+                      "Skrat",
+                      "",
+                      ":/images/clans/Skrat.jpg");
+    this->GenererClan(TypeClan::Gratzz,
+                      "Gratzz",
+                      "",
+                      ":/images/clans/Gratzz.jpg");
+    this->GenererClan(TypeClan::Morbidus,
+                      "Morbidus",
+                      "",
+                      ":/images/clans/Morbidus.png");
+    this->GenererClan(TypeClan::Scorbut,
+                      "Scorbut",
+                      "",
+                      ":/images/clans/Scorbut.jpg");
+    this->GenererClan(TypeClan::Krizzor,
+                      "Krizzor",
+                      "",
+                      ":/images/clans/Krizzor.jpg");
+    this->GenererClan(TypeClan::Liskit,
+                      "Liskit",
+                      "",
+                      ":/images/clans/Liskit.jpg");
+    this->GenererClan(TypeClan::Festus,
+                      "Festus",
+                      "",
+                      ":/images/clans/Festus.jpg");
+    this->GenererClan(TypeClan::Raklur,
+                      "Raklur",
+                      "",
+                      ":/images/clans/Raklur.jpg");
+    this->GenererClan(TypeClan::Eshin,
+                      "Eshin",
+                      "",
+                      ":/images/clans/Eshin.png");
+    this->GenererClan(TypeClan::Moulder,
+                      "Moulder",
+                      "",
+                      ":/images/clans/Moulder.jpg");
+    this->GenererClan(TypeClan::Skyre,
+                      "Skyre",
+                      "",
+                      ":/images/clans/Skyre.png");
+    this->GenererClan(TypeClan::Mordkin,
+                      "Mordkin",
+                      "",
+                      ":/images/clans/Mordkin.png");
+    this->GenererClan(TypeClan::Grutnik,
+                      "Grutnik",
+                      "",
+                      ":/images/clans/Grutnik.png");
+    this->GenererClan(TypeClan::Volkn,
+                      "Volkn",
+                      "",
+                      ":/images/clans/Volkn.jpg");
 }
 
 Clan* UniversSkaven::ChoisirClan()

@@ -31,10 +31,11 @@ class Clan
 
 public:
 
-    Clan(TypeClan clan, QString nom/*, DPersoSkaven* chef = nullptr, QString cheminBanniere = ""*/);
+    Clan(TypeClan clan, QString nom, QString description/*, DPersoSkaven* chef = nullptr*/, QString cheminBanniere = "");
 
     TypeClan m_TypeClan;
     QString m_Nom;
+    QString m_Description;
 
     //DPersoSkaven* m_Chef = nullptr;
     QString m_CheminBanniere;
