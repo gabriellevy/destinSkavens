@@ -24,7 +24,15 @@ void DPersoSkaven::InitialiserPerso()
     Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_CLAN);
 
-    this->m_Profession = new Profession();
+    this->m_Profession = GetUniversSkaven()->ChoisirProfession();
+    Carac* caracProf = new Carac(UniversSkaven::CARAC_PROF,
+                             UniversSkaven::CARAC_PROF,
+                             this->m_Profession->m_Nom,
+                             "",
+                             this->m_Profession->m_Description,
+                             MODE_AFFICHAGE::ma_Texte);
+    Univers::ME->GetHistoire()->m_Caracs.push_back(caracProf);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_PROF);
 
     this->DeduireImage();
 }
@@ -64,6 +72,7 @@ void DPersoSkaven::DeduireImage()
         };
         this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
     }break;
+    case TypeProfession::Moine_de_la_peste :
     case TypeProfession::Pretre_de_la_peste :{
         QStringList chemins = {
             ":/images/portraits/peste01.jpg",
@@ -96,6 +105,8 @@ void DPersoSkaven::DeduireImage()
         };
         this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
     }break;
+    case TypeProfession::Espion_dans_le_monde_de_la_surface :
+    case TypeProfession::Espion_chez_les_autres_clans_skavens :
     case TypeProfession::Coureur_d_egouts :
     case TypeProfession::Assassin : {
         QStringList chemins = {

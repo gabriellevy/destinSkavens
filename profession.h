@@ -1,6 +1,8 @@
 #ifndef PROFESSION_H
 #define PROFESSION_H
 
+#include <QString>
+
 enum class TypeProfession : char {
     Cultivateur_de_champignons = 0,
     Batisseur_de_taudis,
@@ -34,10 +36,13 @@ class Profession
 {
 public:
     // constructeur générant une profession aléatoire
-    Profession();
+    Profession(TypeProfession typeProfession);
 
     TypeProfession m_TypeProfession;
+    QString m_Nom;
+    QString m_Description;
     int m_StatutSocial;
+    float m_Proba;
 };
 
 #endif // PROFESSION_H
