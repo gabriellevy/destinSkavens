@@ -24,12 +24,14 @@ CONFIG += c++11
 CONFIG += resources_big
 
 SOURCES += \
+    ../destinLib/selectionneurdenoeud.cpp \
     ../destinLib/theme.cpp \
     ../destinLib/univers.cpp \
     ../destinLib/histoire.cpp \
     ../destinLib/carac.cpp \
     ../destinLib/condition.cpp \
     ../destinLib/noeud.cpp \
+    ../destinLib/noeudnarratif.cpp \
     ../destinLib/effet.cpp \
     ../destinLib/choix.cpp \
     ../destinLib/evt.cpp \
@@ -47,7 +49,6 @@ SOURCES += \
     ../destinLib/evtaleatoire.cpp \
     ../destinLib/reglages.cpp \
     ../destinLib/dbmanager.cpp \
-    ../destinLib/selectionneurdevenement.cpp \
     clan.cpp \
     aspectratiolabel.cpp \
     dpersoskaven.cpp \
@@ -57,12 +58,14 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    ../destinLib/selectionneurdenoeud.h \
     ../destinLib/theme.h \
     ../destinLib/univers.h \
     ../destinLib/histoire.h \
     ../destinLib/carac.h \
     ../destinLib/condition.h \
     ../destinLib/noeud.h \
+    ../destinLib/noeudnarratif.h \
     ../destinLib/effet.h \
     ../destinLib/choix.h \
     ../destinLib/evt.h \
@@ -79,7 +82,6 @@ HEADERS += \
     ../destinLib/evtaleatoire.h \
     ../destinLib/reglages.h \
     ../destinLib/dbmanager.h \
-    ../destinLib/selectionneurdevenement.h \
     aspectratiolabel.h \
     clan.h \
     dpersoskaven.h \

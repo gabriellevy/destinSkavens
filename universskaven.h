@@ -31,11 +31,9 @@ public:
     static QString CARAC_CLAN;
     static QString CARAC_PROF;
 
-protected:
-    // génère toutes les caracs qui peuvent être visualisées par le joueur (d'autres caracs peuvent être générées et invisibles n'importe quand dans l'aventure)
-    virtual void GenererCaracs();
     QVector<Clan*> m_TousLesClans;
     QVector<Profession*> m_TousLesProfessions;
+protected:
 };
 
 #endif // UNIVERSSKAVEN_H

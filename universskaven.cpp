@@ -15,20 +15,12 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
 QString UniversSkaven::CARAC_CLAN = "Clan";
 QString UniversSkaven::CARAC_PROF = "Profession";
 
-void UniversSkaven::GenererCaracs()
-{
-    GenererTousLesClans();
-    GenererToutesLesProfessions();
-}
-
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {
     m_Histoire = new Hist("Vie de Skaven");
     m_GenHistoire = new GenHistSkaven(m_Histoire);
     m_GenHistoire->GenererHistoire();
     this->setWindowTitle(m_Histoire->m_Titre);
-
-    this->GenererCaracs();
 
     return m_Histoire;
 }

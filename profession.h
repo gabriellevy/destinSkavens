@@ -3,6 +3,8 @@
 
 #include <QString>
 
+#include "../destinLib/condition.h"
+
 enum class TypeProfession : char {
     Cultivateur_de_champignons = 0,
     Batisseur_de_taudis,
@@ -42,7 +44,9 @@ public:
     QString m_Nom;
     QString m_Description;
     int m_StatutSocial;
-    float m_Proba;
+    //float m_Proba;
+    // condition à respecter pour exécuter ce noeud (si il y en a une)
+    QList<Condition*> m_Conditions;
 };
 
 #endif // PROFESSION_H
