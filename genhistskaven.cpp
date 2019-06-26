@@ -19,9 +19,9 @@ Hist* GenHistSkaven::GenererHistoire()
 
     GenererFonctionsCallback();
 
-    GenererEvtsAccueil();
-
     GenererCaracs();
+
+    GenererEvtsAccueil();
 
     return m_HistoireGeneree;
 }
@@ -64,7 +64,7 @@ void GenHistSkaven::GenererEvtsAccueil()
     Evt* Debut = this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
     // bon y'a un problème à sélectionner le métier comme ça : faut remettre à jour l'image mais bon on verra plus tard
     this->m_GenerateurEvt->AjouterEffetNarration( "Le prochain effet va re-sélectionner votre métier");
-    //Effet* setMetier = GenererEffetSelectionMetier(Debut);
+    Effet* setMetier = GenererEffetSelectionMetier(Debut);
     this->m_GenerateurEvt->AjouterEffetNarration( "Là ça devrait vraiment être fini");
     // attention déterminer l'effet final pour pas se défiler tous les effets
 }
