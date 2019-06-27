@@ -43,28 +43,30 @@ void GenHistSkaven::GenererPersos()
     IPerso::AjouterPersoJouable(perso);
 }
 
-Effet* GenHistSkaven::GenererEffetSelectionMetier(Evt* evt)
+Effet* GenHistSkaven::GenererEffetSelectionMetier()
 {
-    QVector<Noeud*> metiersPossibles = {};
+    QVector<NoeudProbable*> metiersPossibles = {};
     for (int i=0; i < GetUniversSkaven()->m_TousLesProfessions.length() ; ++i) {
         Profession* profession = GetUniversSkaven()->m_TousLesProfessions[i];
 
         Noeud* noeudMetier = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
-                    UniversSkaven::CARAC_PROF, profession->m_Nom, profession->m_Conditions);
+                    UniversSkaven::CARAC_PROF, profession->m_Nom);
 
-        metiersPossibles.push_back(noeudMetier);
+        NoeudProbable* noeudMetierProbable = new NoeudProbable(noeudMetier, profession->m_PoidsProba);
+
+        metiersPossibles.push_back(noeudMetierProbable);
     }
 
-    return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(evt, metiersPossibles,
-                                                            "selectionneur d'événement", "on vient de sélectionneur l'événement je crois!");
+    return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(metiersPossibles,
+                                                            "selectionneur d'événement", "");
 }
 
 void GenHistSkaven::GenererEvtsAccueil()
 {
-    Evt* Debut = this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
+    /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
     // bon y'a un problème à sélectionner le métier comme ça : faut remettre à jour l'image mais bon on verra plus tard
     this->m_GenerateurEvt->AjouterEffetNarration( "Le prochain effet va re-sélectionner votre métier");
-    Effet* setMetier = GenererEffetSelectionMetier(Debut);
+    /*Effet* setMetier = */GenererEffetSelectionMetier();
     this->m_GenerateurEvt->AjouterEffetNarration( "Là ça devrait vraiment être fini");
     // attention déterminer l'effet final pour pas se défiler tous les effets
 }

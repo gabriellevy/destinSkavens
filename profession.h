@@ -46,7 +46,12 @@ public:
     int m_StatutSocial;
     //float m_Proba;
     // condition à respecter pour exécuter ce noeud (si il y en a une)
-    QList<Condition*> m_Conditions;
+    QList<Condition*> m_Conditions = {};
+
+    /**
+     * @brief condition calculant le pourcentage de chances d'avoir ce métier directement à la majorité
+     */
+    Condition* m_PoidsProba;
 };
 
 #endif // PROFESSION_H

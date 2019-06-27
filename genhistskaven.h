@@ -22,7 +22,7 @@ public:
 protected:
     // génère toutes les caracs qui peuvent être visualisées par le joueur (d'autres caracs peuvent être générées et invisibles n'importe quand dans l'aventure)
     virtual void GenererCaracs();
-    Effet* GenererEffetSelectionMetier(Evt* evt);
+    Effet* GenererEffetSelectionMetier();
 };
 
 #endif // GENHISTSKAVEN_H
