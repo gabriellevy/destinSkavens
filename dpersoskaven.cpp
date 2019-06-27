@@ -34,7 +34,7 @@ void DPersoSkaven::InitialiserPerso()
     Univers::ME->GetHistoire()->m_Caracs.push_back(caracProf);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_PROF);
 
-    this->DeduireImage();
+    this->RafraichirAffichage();
 }
 
 UniversSkaven* DPersoSkaven::GetUniversSkaven()
@@ -42,7 +42,7 @@ UniversSkaven* DPersoSkaven::GetUniversSkaven()
     return static_cast<UniversSkaven*>(Univers::ME);
 }
 
-void DPersoSkaven::DeduireImage()
+void DPersoSkaven::RafraichirAffichage()
 {
     this->m_CheminImagePortrait = "";
     // image spécial selon le métier

@@ -22,6 +22,10 @@ public:
 protected:
     // génère toutes les caracs qui peuvent être visualisées par le joueur (d'autres caracs peuvent être générées et invisibles n'importe quand dans l'aventure)
     virtual void GenererCaracs();
+    /**
+     * @brief fonction de sélection de clan : tous els clans ont le même pourcentage de chance d'être sélectionné
+     */
+    Effet* GenererEffetSelectionClan();
     Effet* GenererEffetSelectionMetier();
 };
 

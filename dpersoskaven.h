@@ -17,6 +17,9 @@ struct Metier {
 
 class DPersoSkaven : public DPerso
 {
+protected :
+    void RafraichirAffichage();
+
 public:
     DPersoSkaven();
 
@@ -26,7 +29,6 @@ public:
     Profession* m_Profession = nullptr;
 
     UniversSkaven* GetUniversSkaven();
-    void DeduireImage();
 };
 
 #endif // DPERSOSKAVEN_H
