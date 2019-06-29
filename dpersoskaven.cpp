@@ -2,11 +2,14 @@
 #include "universskaven.h"
 #include "clan.h"
 #include "profession.h"
+#include "lieu.h"
 #include "../destinLib/carac.h"
+#include <QTime>
 
 DPersoSkaven::DPersoSkaven()
 {
-    std::srand(time(nullptr));
+    QTime time = QTime::currentTime();
+    qsrand(static_cast<uint>(time.msec()));
 }
 
 void DPersoSkaven::InitialiserPerso()
@@ -14,25 +17,32 @@ void DPersoSkaven::InitialiserPerso()
     // génération aléatoire du perso :
     this->m_Nom = GetUniversSkaven()->GenererNomSkaven();
 
-    this->m_Clan = GetUniversSkaven()->ChoisirClan();
     Carac* carac = new Carac(UniversSkaven::CARAC_CLAN,
                              UniversSkaven::CARAC_CLAN,
-                             this->m_Clan->m_Nom,
-                             this->m_Clan->m_CheminBanniere,
-                             this->m_Clan->m_Description,
+                             "nom invalide",
+                             "this->m_Clan->m_CheminBanniere""",
+                             "",
                              MODE_AFFICHAGE::ma_Img);
     Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_CLAN);
 
-    this->m_Profession = GetUniversSkaven()->ChoisirProfession();
     Carac* caracProf = new Carac(UniversSkaven::CARAC_PROF,
                              UniversSkaven::CARAC_PROF,
-                             this->m_Profession->m_Nom,
-                             "",
-                             this->m_Profession->m_Description,
+                                 "nom invalide",
+                                 "this->m_Clan->m_CheminBanniere""",
+                                 "",
                              MODE_AFFICHAGE::ma_Texte);
     Univers::ME->GetHistoire()->m_Caracs.push_back(caracProf);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_PROF);
+
+    Carac* caracLieu = new Carac(UniversSkaven::CARAC_LIEU,
+                             UniversSkaven::CARAC_LIEU,
+                                 "nom invalide",
+                                 "this->m_Clan->m_CheminBanniere""",
+                                 "",
+                             MODE_AFFICHAGE::ma_Texte);
+    Univers::ME->GetHistoire()->m_Caracs.push_back(caracLieu);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_LIEU);
 
     this->RafraichirAffichage();
 }
@@ -42,6 +52,8 @@ UniversSkaven* DPersoSkaven::GetUniversSkaven()
     return static_cast<UniversSkaven*>(Univers::ME);
 }
 
+faire des sélectionneur de profession clan etc qui vous chercher dans les tableaux d'univers
+en fonction des caracs du perso
 void DPersoSkaven::RafraichirAffichage()
 {
     this->m_CheminImagePortrait = "";

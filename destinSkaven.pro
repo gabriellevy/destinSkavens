@@ -55,7 +55,8 @@ SOURCES += \
     genhistskaven.cpp \
     profession.cpp \
     universskaven.cpp \
-    main.cpp
+    main.cpp \
+    lieu.cpp
 
 HEADERS += \
     ../destinLib/selectionneurdenoeud.h \
@@ -87,7 +88,8 @@ HEADERS += \
     dpersoskaven.h \
     genhistskaven.h \
     profession.h \
-    universskaven.h
+    universskaven.h \
+    lieu.h
 
 FORMS += \
     ../destinLib/univers.ui \

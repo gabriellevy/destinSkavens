@@ -44,14 +44,14 @@ public:
     QString m_Nom;
     QString m_Description;
     int m_StatutSocial;
-    //float m_Proba;
-    // condition à respecter pour exécuter ce noeud (si il y en a une)
+
+    // condition à respecter pour pouvoir avoir cette profession
     QList<Condition*> m_Conditions = {};
 
     /**
      * @brief condition calculant le pourcentage de chances d'avoir ce métier directement à la majorité
      */
-    Condition* m_PoidsProba;
+    Condition* m_PoidsProba = nullptr;
 };
 
 #endif // PROFESSION_H

@@ -77,12 +77,30 @@ Effet* GenHistSkaven::GenererEffetSelectionClan()
     return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(clansPossibles);
 }
 
+Effet* GenHistSkaven::GenererEffetSelectionLieu()
+{
+    QVector<NoeudProbable*> lieuxPossibles = {};
+    for (int i=0; i < GetUniversSkaven()->m_TousLesLieux.length() ; ++i) {
+        Lieu* lieu = GetUniversSkaven()->m_TousLesLieux[i];
+
+        Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
+                    UniversSkaven::CARAC_LIEU, lieu->m_Nom);
+
+        NoeudProbable* noeudLieuProbable = new NoeudProbable(noeudClan, lieu->m_PoidsProba);
+
+        lieuxPossibles.push_back(noeudLieuProbable);
+    }
+
+    return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(lieuxPossibles);
+}
+
 void GenHistSkaven::GenererEvtsAccueil()
 {
     /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
     // bon y'a un problème à sélectionner le métier comme ça : faut remettre à jour l'image mais bon on verra plus tard
     //this->m_GenerateurEvt->AjouterEffetNarration( "Le prochain effet va re-sélectionner votre métier");
     GenererEffetSelectionClan();
+    GenererEffetSelectionLieu();
     GenererEffetSelectionMetier();
     this->m_GenerateurEvt->AjouterEffetNarration( "Initilisation du métier et du clan finis");
     // attention déterminer l'effet final pour pas se défiler tous les effets

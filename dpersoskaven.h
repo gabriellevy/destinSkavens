@@ -25,8 +25,8 @@ public:
 
     void InitialiserPerso();
 
-    Clan* m_Clan = nullptr;
-    Profession* m_Profession = nullptr;
+    //Clan* m_Clan = nullptr;
+    //Profession* m_Profession = nullptr;
 
     UniversSkaven* GetUniversSkaven();
 };

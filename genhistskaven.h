@@ -27,6 +27,7 @@ protected:
      */
     Effet* GenererEffetSelectionClan();
     Effet* GenererEffetSelectionMetier();
+    Effet* GenererEffetSelectionLieu();
 };
 
 #endif // GENHISTSKAVEN_H

@@ -3,10 +3,6 @@
 
 Profession::Profession(TypeProfession typeProfession)
 {
-    // le vrai random devra être via les proba :
-    QTime time = QTime::currentTime();
-    qsrand(static_cast<uint>(time.msec()));
-
     m_TypeProfession = typeProfession;
 
     switch (m_TypeProfession) {
@@ -166,8 +162,8 @@ Profession::Profession(TypeProfession typeProfession)
 
     }
 
-    if ( m_Conditions.length() == 0)
-        m_Conditions.push_back(new Condition(0.0002));
+    if ( m_PoidsProba == nullptr)
+        m_PoidsProba = new Condition(0.0002);
 
     if ( m_Description == "" )
         m_Description = m_Nom;

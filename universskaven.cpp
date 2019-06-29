@@ -14,6 +14,7 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
 
 QString UniversSkaven::CARAC_CLAN = "Clan";
 QString UniversSkaven::CARAC_PROF = "Profession";
+QString UniversSkaven::CARAC_LIEU = "Lieu";
 
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {
@@ -31,12 +32,26 @@ void UniversSkaven::GenererProfession(TypeProfession typeProfession)
     m_TousLesProfessions.push_back(profession);
 }
 
+void UniversSkaven::GenererLieu(TypeLieu typeLieu)
+{
+    Lieu* lieu = new Lieu(typeLieu);
+    m_TousLesLieux.push_back(lieu);
+}
+
 void UniversSkaven::GenererClan(TypeClan typeClan, QString nom, float puissance, QString description, QString chemin)
 {
     if ( description == "")
         description = "Clan " + nom;
     Clan* clan = new Clan(typeClan, nom, puissance, description, chemin);
     m_TousLesClans.push_back(clan);
+}
+
+void UniversSkaven::GenererTousLesLieux()
+{
+    int nb = static_cast<int>(TypeLieu::NombreTotal);
+    for (int i = 0; i < nb ; ++i) {
+        this->GenererLieu(static_cast<TypeLieu>(i));
+    }
 }
 
 void UniversSkaven::GenererToutesLesProfessions()
