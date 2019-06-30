@@ -29,6 +29,10 @@ public:
     //Profession* m_Profession = nullptr;
 
     UniversSkaven* GetUniversSkaven();
+
+    // pseudo accesseurs qui vont chercher les caracs des caracs dans le stableaux d'univers :
+    Profession* GetProfession();
+    Clan* GetClan();
 };
 
 #endif // DPERSOSKAVEN_H

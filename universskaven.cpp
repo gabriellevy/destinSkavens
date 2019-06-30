@@ -54,6 +54,39 @@ void UniversSkaven::GenererTousLesLieux()
     }
 }
 
+Profession* UniversSkaven::GetProfession(QString idProfession)
+{
+    for ( int i = 0 ; i < m_TousLesProfessions.length() ; ++i) {
+        if ( m_TousLesProfessions[i]->m_Nom == idProfession)
+            return m_TousLesProfessions[i];
+    }
+    QString msg = "Profession ontrouvable : " + idProfession ;
+    Q_ASSERT_X(true, msg.toStdString().c_str(), "UniversSkaven::GetProfession");
+    return nullptr;
+}
+
+Clan* UniversSkaven::GetClanViaBanniere(QString banniere)
+{
+    for ( int i = 0 ; i < m_TousLesClans.length() ; ++i) {
+        if ( m_TousLesClans[i]->m_CheminBanniere == banniere)
+            return m_TousLesClans[i];
+    }
+    QString msg = "Clan introuvable de cette bannière : " + banniere ;
+    Q_ASSERT_X(true, msg.toStdString().c_str(), "UniversSkaven::GetClanViaBanniere");
+    return nullptr;
+}
+
+Clan* UniversSkaven::GetClan(QString idClan)
+{
+    for ( int i = 0 ; i < m_TousLesClans.length() ; ++i) {
+        if ( m_TousLesClans[i]->m_Nom == idClan)
+            return m_TousLesClans[i];
+    }
+    QString msg = "Clan introuvable : " + idClan ;
+    Q_ASSERT_X(true, msg.toStdString().c_str(), "UniversSkaven::GetClan");
+    return nullptr;
+}
+
 void UniversSkaven::GenererToutesLesProfessions()
 {
     this->GenererProfession(TypeProfession::Cultivateur_de_champignons);

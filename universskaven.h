@@ -38,6 +38,10 @@ public:
     QVector<Clan*> m_TousLesClans;
     QVector<Lieu*> m_TousLesLieux;
     QVector<Profession*> m_TousLesProfessions;
+
+    Profession* GetProfession(QString idProfession);
+    Clan* GetClan(QString idClan);
+    Clan* GetClanViaBanniere(QString banniere);
 protected:
 };
 

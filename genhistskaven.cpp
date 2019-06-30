@@ -30,6 +30,7 @@ void GenHistSkaven::GenererCaracs()
 {
     GetUniversSkaven()->GenererTousLesClans();
     GetUniversSkaven()->GenererToutesLesProfessions();
+    GetUniversSkaven()->GenererTousLesLieux();
 }
 
 UniversSkaven* GenHistSkaven::GetUniversSkaven()
@@ -67,7 +68,7 @@ Effet* GenHistSkaven::GenererEffetSelectionClan()
         Clan* clan = GetUniversSkaven()->m_TousLesClans[i];
 
         Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
-                    UniversSkaven::CARAC_CLAN, clan->m_Nom);
+                    UniversSkaven::CARAC_CLAN, clan->m_CheminBanniere);
 
         NoeudProbable* noeudClanProbable = new NoeudProbable(noeudClan, new Condition(1.0f));
 

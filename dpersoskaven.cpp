@@ -22,7 +22,7 @@ void DPersoSkaven::InitialiserPerso()
                              "nom invalide",
                              "this->m_Clan->m_CheminBanniere""",
                              "",
-                             MODE_AFFICHAGE::ma_Img);
+                             MODE_AFFICHAGE::ma_ImgValeur);
     Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_CLAN);
 
@@ -52,13 +52,26 @@ UniversSkaven* DPersoSkaven::GetUniversSkaven()
     return static_cast<UniversSkaven*>(Univers::ME);
 }
 
-faire des sélectionneur de profession clan etc qui vous chercher dans les tableaux d'univers
-en fonction des caracs du perso
+Profession* DPersoSkaven::GetProfession()
+{
+    QString idProfession = Carac::GetCaracValue(UniversSkaven::CARAC_PROF);
+    return GetUniversSkaven()->GetProfession(idProfession);
+}
+
+
+Clan* DPersoSkaven::GetClan()
+{
+    QString cheminBanniere = Carac::GetCaracValue(UniversSkaven::CARAC_CLAN);
+    return GetUniversSkaven()->GetClanViaBanniere(cheminBanniere);
+}
+
 void DPersoSkaven::RafraichirAffichage()
 {
     this->m_CheminImagePortrait = "";
+    if ( this->GetProfession() == nullptr )
+        return;
     // image spécial selon le métier
-    switch (this->m_Profession->m_TypeProfession) {
+    switch (this->GetProfession()->m_TypeProfession) {
     case TypeProfession::Guerrier_des_clans :
     {
         QStringList chemins = {
@@ -136,7 +149,7 @@ void DPersoSkaven::RafraichirAffichage()
     // si aucune alors image spéciale selon le clan :
     if ( this->m_CheminImagePortrait == "" )
     {
-        switch (this->m_Clan->m_TypeClan) {
+        switch (this->GetClan()->m_TypeClan) {
         case TypeClan::Eshin : {
             QStringList chemins = {
                 ":/images/portraits/eschin01.jpg",
@@ -184,4 +197,3 @@ void DPersoSkaven::RafraichirAffichage()
         this->m_CheminImagePortrait = chemins[rand() % chemins.length()];
     }
 }
-//":/images/portraits/skaven01.png"
