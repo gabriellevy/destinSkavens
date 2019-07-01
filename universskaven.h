@@ -34,6 +34,7 @@ public:
     static QString CARAC_CLAN;
     static QString CARAC_PROF;
     static QString CARAC_LIEU;
+    static QString CARAC_FOURRURE;
 
     QVector<Clan*> m_TousLesClans;
     QVector<Lieu*> m_TousLesLieux;

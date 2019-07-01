@@ -15,6 +15,7 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
 QString UniversSkaven::CARAC_CLAN = "Clan";
 QString UniversSkaven::CARAC_PROF = "Profession";
 QString UniversSkaven::CARAC_LIEU = "Lieu";
+QString UniversSkaven::CARAC_FOURRURE = "Fourrure";
 
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {

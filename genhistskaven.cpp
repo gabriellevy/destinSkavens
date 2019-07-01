@@ -31,6 +31,14 @@ void GenHistSkaven::GenererCaracs()
     GetUniversSkaven()->GenererTousLesClans();
     GetUniversSkaven()->GenererToutesLesProfessions();
     GetUniversSkaven()->GenererTousLesLieux();
+
+    Carac* carac = new Carac(UniversSkaven::CARAC_FOURRURE,
+                             UniversSkaven::CARAC_FOURRURE,
+                             "nom invalide",
+                             "Couleur de fourrure et signes particuliers",
+                             "",
+                             MODE_AFFICHAGE::ma_Texte);
+    Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
 }
 
 UniversSkaven* GenHistSkaven::GetUniversSkaven()
@@ -70,12 +78,31 @@ Effet* GenHistSkaven::GenererEffetSelectionClan()
         Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
                     UniversSkaven::CARAC_CLAN, clan->m_CheminBanniere);
 
-        NoeudProbable* noeudClanProbable = new NoeudProbable(noeudClan, new Condition(1.0f));
+        NoeudProbable* noeudClanProbable = new NoeudProbable(noeudClan, new Condition(1.0));
 
         clansPossibles.push_back(noeudClanProbable);
     }
 
     return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(clansPossibles);
+}
+
+Effet* GenHistSkaven::GenererEffetSelectionFourrure()
+{
+    QVector<NoeudProbable*> fourruresPossibles = {};
+
+    auto creerSelectionFourrure = [&fourruresPossibles, this](QString couleurFourrure, double proba) {
+            Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
+                        UniversSkaven::CARAC_FOURRURE, couleurFourrure);
+            NoeudProbable* noeudLieuProbable = new NoeudProbable(noeudClan, new Condition(proba));
+            fourruresPossibles.push_back(noeudLieuProbable);
+    };
+    creerSelectionFourrure("Gris et cornu", 0.001);
+    creerSelectionFourrure("Blanche", 0.0001);
+    creerSelectionFourrure("Noire", 0.01);
+    creerSelectionFourrure("Brune", 0.5);
+    creerSelectionFourrure("Tachetée", 0.5);
+
+    return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(fourruresPossibles);
 }
 
 Effet* GenHistSkaven::GenererEffetSelectionLieu()
@@ -102,6 +129,7 @@ void GenHistSkaven::GenererEvtsAccueil()
     //this->m_GenerateurEvt->AjouterEffetNarration( "Le prochain effet va re-sélectionner votre métier");
     GenererEffetSelectionClan();
     GenererEffetSelectionLieu();
+    GenererEffetSelectionFourrure();
     GenererEffetSelectionMetier();
     this->m_GenerateurEvt->AjouterEffetNarration( "Initilisation du métier et du clan finis");
     // attention déterminer l'effet final pour pas se défiler tous les effets

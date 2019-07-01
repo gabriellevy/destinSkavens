@@ -20,7 +20,7 @@ void DPersoSkaven::InitialiserPerso()
     Carac* carac = new Carac(UniversSkaven::CARAC_CLAN,
                              UniversSkaven::CARAC_CLAN,
                              "nom invalide",
-                             "this->m_Clan->m_CheminBanniere""",
+                             "",
                              "",
                              MODE_AFFICHAGE::ma_ImgValeur);
     Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
@@ -29,7 +29,7 @@ void DPersoSkaven::InitialiserPerso()
     Carac* caracProf = new Carac(UniversSkaven::CARAC_PROF,
                              UniversSkaven::CARAC_PROF,
                                  "nom invalide",
-                                 "this->m_Clan->m_CheminBanniere""",
+                                 "",
                                  "",
                              MODE_AFFICHAGE::ma_Texte);
     Univers::ME->GetHistoire()->m_Caracs.push_back(caracProf);
@@ -38,11 +38,12 @@ void DPersoSkaven::InitialiserPerso()
     Carac* caracLieu = new Carac(UniversSkaven::CARAC_LIEU,
                              UniversSkaven::CARAC_LIEU,
                                  "nom invalide",
-                                 "this->m_Clan->m_CheminBanniere""",
+                                 "",
                                  "",
                              MODE_AFFICHAGE::ma_Texte);
     Univers::ME->GetHistoire()->m_Caracs.push_back(caracLieu);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_LIEU);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_FOURRURE);
 
     this->RafraichirAffichage();
 }

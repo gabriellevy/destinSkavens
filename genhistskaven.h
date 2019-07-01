@@ -26,8 +26,10 @@ protected:
      * @brief fonction de sélection de clan : tous els clans ont le même pourcentage de chance d'être sélectionné
      */
     Effet* GenererEffetSelectionClan();
-    Effet* GenererEffetSelectionMetier();
     Effet* GenererEffetSelectionLieu();
+    Effet* GenererEffetSelectionFourrure();
+
+    Effet* GenererEffetSelectionMetier();
 };
 
 #endif // GENHISTSKAVEN_H
