@@ -35,6 +35,7 @@ public:
     static QString CARAC_PROF;
     static QString CARAC_LIEU;
     static QString CARAC_FOURRURE;
+    static QString CARAC_TAILLE;
 
     QVector<Clan*> m_TousLesClans;
     QVector<Lieu*> m_TousLesLieux;
@@ -43,6 +44,7 @@ public:
     Profession* GetProfession(QString idProfession);
     Clan* GetClan(QString idClan);
     Clan* GetClanViaBanniere(QString banniere);
+    Lieu* GetLieu(QString idLieu);
 protected:
 };
 

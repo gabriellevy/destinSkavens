@@ -16,6 +16,7 @@ QString UniversSkaven::CARAC_CLAN = "Clan";
 QString UniversSkaven::CARAC_PROF = "Profession";
 QString UniversSkaven::CARAC_LIEU = "Lieu";
 QString UniversSkaven::CARAC_FOURRURE = "Fourrure";
+QString UniversSkaven::CARAC_TAILLE = "Taille";
 
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {
@@ -42,7 +43,7 @@ void UniversSkaven::GenererLieu(TypeLieu typeLieu)
 void UniversSkaven::GenererClan(TypeClan typeClan, QString nom, float puissance, QString description, QString chemin)
 {
     if ( description == "")
-        description = "Clan " + nom;
+        description = nom;
     Clan* clan = new Clan(typeClan, nom, puissance, description, chemin);
     m_TousLesClans.push_back(clan);
 }
@@ -61,8 +62,19 @@ Profession* UniversSkaven::GetProfession(QString idProfession)
         if ( m_TousLesProfessions[i]->m_Nom == idProfession)
             return m_TousLesProfessions[i];
     }
-    QString msg = "Profession ontrouvable : " + idProfession ;
+    QString msg = "Profession introuvable : " + idProfession ;
     Q_ASSERT_X(true, msg.toStdString().c_str(), "UniversSkaven::GetProfession");
+    return nullptr;
+}
+
+Lieu* UniversSkaven::GetLieu(QString idLieu)
+{
+    for ( int i = 0 ; i < m_TousLesLieux.length() ; ++i) {
+        if ( m_TousLesLieux[i]->m_Nom == idLieu)
+            return m_TousLesLieux[i];
+    }
+    QString msg = "Lieu introuvable : " + idLieu ;
+    Q_ASSERT_X(true, msg.toStdString().c_str(), "UniversSkaven::GetLieu");
     return nullptr;
 }
 

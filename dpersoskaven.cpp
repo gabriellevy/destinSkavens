@@ -44,6 +44,7 @@ void DPersoSkaven::InitialiserPerso()
     Univers::ME->GetHistoire()->m_Caracs.push_back(caracLieu);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_LIEU);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_FOURRURE);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_TAILLE);
 
     this->RafraichirAffichage();
 }
@@ -59,6 +60,11 @@ Profession* DPersoSkaven::GetProfession()
     return GetUniversSkaven()->GetProfession(idProfession);
 }
 
+Lieu* DPersoSkaven::GetLieu()
+{
+    QString idLieu =  Carac::GetCaracValue(UniversSkaven::CARAC_LIEU);
+    return GetUniversSkaven()->GetLieu(idLieu);
+}
 
 Clan* DPersoSkaven::GetClan()
 {

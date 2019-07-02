@@ -6,6 +6,7 @@
 
 class Clan;
 class Profession;
+class Lieu;
 
 class UniversSkaven;
 
@@ -33,6 +34,7 @@ public:
     // pseudo accesseurs qui vont chercher les caracs des caracs dans le stableaux d'univers :
     Profession* GetProfession();
     Clan* GetClan();
+    Lieu* GetLieu();
 };
 
 #endif // DPERSOSKAVEN_H

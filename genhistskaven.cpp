@@ -39,6 +39,14 @@ void GenHistSkaven::GenererCaracs()
                              "",
                              MODE_AFFICHAGE::ma_Texte);
     Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
+
+    Carac* caracTaille = new Carac(UniversSkaven::CARAC_TAILLE,
+                             UniversSkaven::CARAC_TAILLE,
+                             "nom invalide",
+                             "en cm",
+                             "",
+                             MODE_AFFICHAGE::ma_Nombre);
+    Univers::ME->GetHistoire()->m_Caracs.push_back(caracTaille);
 }
 
 UniversSkaven* GenHistSkaven::GetUniversSkaven()
@@ -122,15 +130,63 @@ Effet* GenHistSkaven::GenererEffetSelectionLieu()
     return this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(lieuxPossibles);
 }
 
+UniversSkaven* GetUniversSkaven()
+{
+    return static_cast<UniversSkaven*>(Univers::ME);
+}
+
+void GenererTexteNaissance()
+{
+    Lieu* lieu = GetUniversSkaven()->GetLieu(Carac::GetCaracValue(UniversSkaven::CARAC_LIEU));
+    Clan* clan = GetUniversSkaven()->GetClanViaBanniere(Carac::GetCaracValue(UniversSkaven::CARAC_CLAN));
+    QString lieu_description = lieu->m_Description;
+    if ( lieu_description == lieu->m_Nom)
+        lieu_description = "";
+
+    QString clan_texte = clan->m_Description;
+    if (clan_texte == "" || clan->m_Description == clan->m_Nom )
+        clan_texte = "Vous faites partie du clan " + clan->m_Nom;
+
+    QString texte = "Vous êtes nés dans le terrier de " +
+            lieu->m_Nom + ". " +
+            lieu_description +
+            clan_texte + "\n\n";
+
+
+    int taille = 90 + (qrand()%10)*10 + qrand()%10;
+
+    QString fourrure = Carac::GetCaracValue(UniversSkaven::CARAC_FOURRURE);
+    texte += "Votre fourrure est " + fourrure + ".";
+    if ( fourrure == "Gris et cornu" )
+        texte += " Vos cornes et votre fourrure grise sont le signe de la marque du rat cornu. Vous êtes promis à un brillant avenir loin au dessus de la piétaille qui vous entourait lors de votre naissance.";
+    if ( fourrure == "Blanche" )
+        texte += " C'est le signe des maîtres et des magiciens. Vos frères ont toujours senti confusément que vous leur étiez supérieur. Il est temps de l'assumer et de les écraser de votre talent exceptionnel.";
+    if ( fourrure == "Noire" ) {
+        texte += " C'est le signe des tueurs. Vous êtes promis à un avenir glorieux et sanglant.";
+        taille += 30;
+    }
+
+    Carac::SetValeurACaracId(UniversSkaven::CARAC_TAILLE, QString::number(taille));
+    texte += ("\nVous mesurez " + QString::number(taille) + "cm. ");
+    if ( taille >= 170 ) {
+        texte += "C'est une très grande taille qui vous aidera assurément à arriver à vos fins.";
+    } else if ( taille < 130 ) {
+        texte += "Il va être dur de vous faire respecter.";
+    }
+
+    texte += "\n\nVous approchez de votre 5ème année. Bientôt un adulte. Beaucoup de vos frères n'ont pas survécu jusque là. Qu'ils soient morts de maladie, de faim, ou juste dévorés par d'autres skavens, ils n'étaient sans doute pas dignes de survivre. Vous par contre avez été assez vigoureux pour téter jusqu'à atteindre une taille qui vous met presque à l'abri des gloutons. Une remarquable carrière vous attend ! Qui sait ? Peut-être que bientôt vous serez un des seigneurs de la ruine et mènerez votre peuple à l'assaut des peuples de la surface.";
+
+    Univers::ME->GetExecHistoire()->EffetActuel()->m_Text = texte;
+}
+
 void GenHistSkaven::GenererEvtsAccueil()
 {
     /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
-    // bon y'a un problème à sélectionner le métier comme ça : faut remettre à jour l'image mais bon on verra plus tard
-    //this->m_GenerateurEvt->AjouterEffetNarration( "Le prochain effet va re-sélectionner votre métier");
     GenererEffetSelectionClan();
     GenererEffetSelectionLieu();
     GenererEffetSelectionFourrure();
     GenererEffetSelectionMetier();
-    this->m_GenerateurEvt->AjouterEffetNarration( "Initilisation du métier et du clan finis");
-    // attention déterminer l'effet final pour pas se défiler tous les effets
+    this->m_GenerateurEvt->AjouterEffetCallbackDisplay( &GenererTexteNaissance);
+
+    this->m_GenerateurEvt->AjouterEffetNarration( "heu rien du tout");
 }
