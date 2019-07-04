@@ -25,7 +25,6 @@ CONFIG += resources_big
 
 SOURCES += \
     ../destinLib/selectionneurdenoeud.cpp \
-    ../destinLib/theme.cpp \
     ../destinLib/univers.cpp \
     ../destinLib/histoire.cpp \
     ../destinLib/carac.cpp \
@@ -49,6 +48,7 @@ SOURCES += \
     ../destinLib/evtaleatoire.cpp \
     ../destinLib/reglages.cpp \
     ../destinLib/dbmanager.cpp \
+    ../destinLib/gestionnairecarac.cpp \
     clan.cpp \
     aspectratiolabel.cpp \
     dpersoskaven.cpp \
@@ -60,7 +60,6 @@ SOURCES += \
 
 HEADERS += \
     ../destinLib/selectionneurdenoeud.h \
-    ../destinLib/theme.h \
     ../destinLib/univers.h \
     ../destinLib/histoire.h \
     ../destinLib/carac.h \
@@ -83,6 +82,7 @@ HEADERS += \
     ../destinLib/evtaleatoire.h \
     ../destinLib/reglages.h \
     ../destinLib/dbmanager.h \
+    ../destinLib/gestionnairecarac.h \
     aspectratiolabel.h \
     clan.h \
     dpersoskaven.h \

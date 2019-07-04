@@ -2,6 +2,7 @@
 #include "universskaven.h"
 #include "dpersoskaven.h"
 #include "profession.h"
+#include "../destinLib/gestionnairecarac.h"
 
 GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree)
 {
@@ -38,7 +39,7 @@ void GenHistSkaven::GenererCaracs()
                              "Couleur de fourrure et signes particuliers",
                              "",
                              MODE_AFFICHAGE::ma_Texte);
-    Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
+    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(carac);
 
     Carac* caracTaille = new Carac(UniversSkaven::CARAC_TAILLE,
                              UniversSkaven::CARAC_TAILLE,
@@ -46,7 +47,7 @@ void GenHistSkaven::GenererCaracs()
                              "en cm",
                              "",
                              MODE_AFFICHAGE::ma_Nombre);
-    Univers::ME->GetHistoire()->m_Caracs.push_back(caracTaille);
+    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(caracTaille);
 }
 
 UniversSkaven* GenHistSkaven::GetUniversSkaven()
@@ -137,8 +138,8 @@ UniversSkaven* GetUniversSkaven()
 
 void GenererTexteNaissance()
 {
-    Lieu* lieu = GetUniversSkaven()->GetLieu(Carac::GetCaracValue(UniversSkaven::CARAC_LIEU));
-    Clan* clan = GetUniversSkaven()->GetClanViaBanniere(Carac::GetCaracValue(UniversSkaven::CARAC_CLAN));
+    Lieu* lieu = GetUniversSkaven()->GetLieu(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_LIEU));
+    Clan* clan = GetUniversSkaven()->GetClanViaBanniere(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_CLAN));
     QString lieu_description = lieu->m_Description;
     if ( lieu_description == lieu->m_Nom)
         lieu_description = "";
@@ -155,7 +156,7 @@ void GenererTexteNaissance()
 
     int taille = 90 + (qrand()%10)*10 + qrand()%10;
 
-    QString fourrure = Carac::GetCaracValue(UniversSkaven::CARAC_FOURRURE);
+    QString fourrure = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_FOURRURE);
     texte += "Votre fourrure est " + fourrure + ".";
     if ( fourrure == "Gris et cornu" )
         texte += " Vos cornes et votre fourrure grise sont le signe de la marque du rat cornu. Vous êtes promis à un brillant avenir loin au dessus de la piétaille qui vous entourait lors de votre naissance.";
@@ -166,7 +167,7 @@ void GenererTexteNaissance()
         taille += 30;
     }
 
-    Carac::SetValeurACaracId(UniversSkaven::CARAC_TAILLE, QString::number(taille));
+    GestionnaireCarac::SetValeurACaracId(UniversSkaven::CARAC_TAILLE, QString::number(taille));
     texte += ("\nVous mesurez " + QString::number(taille) + "cm. ");
     if ( taille >= 170 ) {
         texte += "C'est une très grande taille qui vous aidera assurément à arriver à vos fins.";

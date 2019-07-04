@@ -4,6 +4,7 @@
 #include "profession.h"
 #include "lieu.h"
 #include "../destinLib/carac.h"
+#include "../destinLib/gestionnairecarac.h"
 #include <QTime>
 
 DPersoSkaven::DPersoSkaven()
@@ -23,7 +24,7 @@ void DPersoSkaven::InitialiserPerso()
                              "",
                              "",
                              MODE_AFFICHAGE::ma_ImgValeur);
-    Univers::ME->GetHistoire()->m_Caracs.push_back(carac);
+    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(carac);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_CLAN);
 
     Carac* caracProf = new Carac(UniversSkaven::CARAC_PROF,
@@ -32,7 +33,7 @@ void DPersoSkaven::InitialiserPerso()
                                  "",
                                  "",
                              MODE_AFFICHAGE::ma_Texte);
-    Univers::ME->GetHistoire()->m_Caracs.push_back(caracProf);
+    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(caracProf);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_PROF);
 
     Carac* caracLieu = new Carac(UniversSkaven::CARAC_LIEU,
@@ -41,7 +42,7 @@ void DPersoSkaven::InitialiserPerso()
                                  "",
                                  "",
                              MODE_AFFICHAGE::ma_Texte);
-    Univers::ME->GetHistoire()->m_Caracs.push_back(caracLieu);
+    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(caracLieu);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_LIEU);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_FOURRURE);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_TAILLE);
@@ -56,19 +57,19 @@ UniversSkaven* DPersoSkaven::GetUniversSkaven()
 
 Profession* DPersoSkaven::GetProfession()
 {
-    QString idProfession = Carac::GetCaracValue(UniversSkaven::CARAC_PROF);
+    QString idProfession = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_PROF);
     return GetUniversSkaven()->GetProfession(idProfession);
 }
 
 Lieu* DPersoSkaven::GetLieu()
 {
-    QString idLieu =  Carac::GetCaracValue(UniversSkaven::CARAC_LIEU);
+    QString idLieu =  GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_LIEU);
     return GetUniversSkaven()->GetLieu(idLieu);
 }
 
 Clan* DPersoSkaven::GetClan()
 {
-    QString cheminBanniere = Carac::GetCaracValue(UniversSkaven::CARAC_CLAN);
+    QString cheminBanniere = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_CLAN);
     return GetUniversSkaven()->GetClanViaBanniere(cheminBanniere);
 }
 
