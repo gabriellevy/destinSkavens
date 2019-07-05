@@ -57,7 +57,8 @@ UniversSkaven* GenHistSkaven::GetUniversSkaven()
 
 void GenHistSkaven::GenererPersos()
 {
-    DPersoSkaven* perso = new DPersoSkaven();
+    QString nom = this->GetUniversSkaven()->GenererNomSkaven();
+    DPersoSkaven* perso = new DPersoSkaven(nom, nom, nom, "");
     IPerso::AjouterPersoJouable(perso);
 }
 

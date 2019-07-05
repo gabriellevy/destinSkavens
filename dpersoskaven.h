@@ -2,7 +2,7 @@
 #define DPERSOSKAVEN_H
 
 #include "../destinLib/perso.h"
-
+#include "../destinLib/gestionnairecarac.h"
 
 class Clan;
 class Profession;
@@ -22,7 +22,7 @@ protected :
     void RafraichirAffichage();
 
 public:
-    DPersoSkaven();
+    DPersoSkaven(QString id, QString nom, QString description, QString CheminImagePortrait);
 
     void InitialiserPerso();
 

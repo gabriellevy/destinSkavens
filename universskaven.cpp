@@ -6,7 +6,7 @@ UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
                          QWidget *parent)
     : Univers(parent, modeAffichage)
 {
-    this->AppliquerTheme(QColor(180, 180, 210));
+    this->AppliquerTheme(QColor(54, 46, 43));
 
     QTime time = QTime::currentTime();
     qsrand(static_cast<uint>(time.msec()));

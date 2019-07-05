@@ -33,13 +33,13 @@ public:
 
     Clan(TypeClan clan, QString nom, float puissance, QString description/*, DPersoSkaven* chef = nullptr*/, QString cheminBanniere = "");
 
+    QString m_CheminBanniere = "";
     TypeClan m_TypeClan;
     QString m_Nom;
     QString m_Description;
     float m_Puissance;
 
     //DPersoSkaven* m_Chef = nullptr;
-    QString m_CheminBanniere;
 };
 
 #endif // CLAN_H
