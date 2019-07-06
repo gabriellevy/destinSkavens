@@ -42,8 +42,6 @@ void UniversSkaven::GenererLieu(TypeLieu typeLieu)
 
 void UniversSkaven::GenererClan(TypeClan typeClan, QString nom, float puissance, QString description, QString chemin)
 {
-    if ( description == "")
-        description = nom;
     Clan* clan = new Clan(typeClan, nom, puissance, description, chemin);
     m_TousLesClans.push_back(clan);
 }
@@ -134,7 +132,7 @@ void UniversSkaven::GenererTousLesClans()
     this->GenererClan(TypeClan::Rictus,
                       "Rictus",
                       400.0f,
-                      "Le Mont Bossu est actuellement sous la coupe du Seigneur Kratch, chef de l’un des Clans Guerriers les plus importants.",
+                      "Le Clan Rictus est connu pour le grand nombre d’esclaves qu’il détient. Il est actuellement sous la coupe du Seigneur Kratch, c'est l’un des Clans Guerriers les plus importants.",
                       ":/images/clans/Rictus.jpg");
     this->GenererClan(TypeClan::Mors,
                       "Mors",

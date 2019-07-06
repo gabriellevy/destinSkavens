@@ -36,18 +36,18 @@ void GenHistSkaven::GenererCaracs()
     Carac* carac = new Carac(UniversSkaven::CARAC_FOURRURE,
                              UniversSkaven::CARAC_FOURRURE,
                              "nom invalide",
-                             "Couleur de fourrure et signes particuliers",
                              "",
+                             "Couleur de fourrure et signes particuliers",
                              MODE_AFFICHAGE::ma_Texte);
-    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(carac);
+    GestionnaireCarac::GetGestionnaireCarac()->AjouterCarac(carac);
 
     Carac* caracTaille = new Carac(UniversSkaven::CARAC_TAILLE,
                              UniversSkaven::CARAC_TAILLE,
                              "nom invalide",
-                             "en cm",
                              "",
-                             MODE_AFFICHAGE::ma_Nombre);
-    GestionnaireCarac::GetGestionnaireCarac()->m_Caracs.push_back(caracTaille);
+                             "en cm",
+                             MODE_AFFICHAGE::ma_Texte);
+    GestionnaireCarac::GetGestionnaireCarac()->AjouterCarac(caracTaille);
 }
 
 UniversSkaven* GenHistSkaven::GetUniversSkaven()
@@ -145,15 +145,13 @@ void GenererTexteNaissance()
     if ( lieu_description == lieu->m_Nom)
         lieu_description = "";
 
-    QString clan_texte = clan->m_Description;
-    if (clan_texte == "" || clan->m_Description == clan->m_Nom )
-        clan_texte = "Vous faites partie du clan " + clan->m_Nom;
+    QString clan_texte = "Vous faites partie du clan " + clan->m_Nom + ". ";
+    clan_texte += clan->m_Description;
 
     QString texte = "Vous êtes nés dans le terrier de " +
             lieu->m_Nom + ". " +
             lieu_description +
             clan_texte + "\n\n";
-
 
     int taille = 90 + (qrand()%10)*10 + qrand()%10;
 
@@ -177,6 +175,9 @@ void GenererTexteNaissance()
     }
 
     texte += "\n\nVous approchez de votre 5ème année. Bientôt un adulte. Beaucoup de vos frères n'ont pas survécu jusque là. Qu'ils soient morts de maladie, de faim, ou juste dévorés par d'autres skavens, ils n'étaient sans doute pas dignes de survivre. Vous par contre avez été assez vigoureux pour téter jusqu'à atteindre une taille qui vous met presque à l'abri des gloutons. Une remarquable carrière vous attend ! Qui sait ? Peut-être que bientôt vous serez un des seigneurs de la ruine et mènerez votre peuple à l'assaut des peuples de la surface.";
+
+
+    Univers::ME->GetPersoInterface()->RafraichirAffichage();
 
     Univers::ME->GetExecHistoire()->EffetActuel()->m_Text = texte;
 }
