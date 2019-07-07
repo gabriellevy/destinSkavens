@@ -31,6 +31,11 @@ protected:
     Effet* GenererEffetSelectionFourrure();
 
     Effet* GenererEffetSelectionMetier();
+
+    // événements de narration (vie courante)
+    NoeudProbable* GenererSacrificeAuRatCornu();
+    NoeudProbable* GenererGuerreCivileDeClan();
+    NoeudProbable* DuelAcceptation();
 };
 
 #endif // GENHISTSKAVEN_H

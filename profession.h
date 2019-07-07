@@ -52,6 +52,8 @@ public:
      * @brief condition calculant le pourcentage de chances d'avoir ce métier directement à la majorité
      */
     Condition* m_PoidsProba = nullptr;
+
+    static QString GetNomProfession(TypeProfession typeProfession);
 };
 
 #endif // PROFESSION_H

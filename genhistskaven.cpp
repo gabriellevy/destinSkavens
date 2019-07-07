@@ -206,12 +206,60 @@ bool CalculEtMajStatutSocial(QVector<QString>, QVector<QString>)
     return true;
 }
 
+NoeudProbable* GenHistSkaven::GenererGuerreCivileDeClan()
+{
+    Condition* cond = new Condition(0.005);
+    Evt* evt = this->AjouterEvt("GuerreCivileDeClan", "GuerreCivileDeClan");
+
+    /*Effet* annonce = */this->m_GenerateurEvt->AjouterEffetNarration("Une terrible rébellion s'est déclenché dans votre clan.");
+
+    NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
+    return noeudLieuProbable;
+}
+
+NoeudProbable* GenHistSkaven::GenererSacrificeAuRatCornu()
+{
+    Condition* cond = new Condition(0.05);
+    Evt* evt = this->AjouterEvt("Sacrifice au rat cornu", "Sacrifice au rat cornu");
+
+    /*Effet* annonce = */this->m_GenerateurEvt->AjouterEffetNarration("C'est jour de fête dans tout le terrier ! Un grand sacrifice au rat cornu, votre dieu suprême, va être réalisé.");
+
+    NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
+    return noeudLieuProbable;
+}
+
+NoeudProbable* GenHistSkaven::DuelAcceptation()
+{
+    Condition* cond = new Condition(0.0);
+    QList<Condition*> conditionVermine = {
+        new Condition(UniversSkaven::CARAC_PROF, Profession::GetNomProfession(TypeProfession::Vermine_de_choc), Comparateur::c_Egal)
+    };
+    cond->AjouterModifProba(1, conditionVermine);
+    QList<Condition*> conditionGuerrier = {
+        new Condition(UniversSkaven::CARAC_PROF, Profession::GetNomProfession(TypeProfession::Guerrier_des_clans), Comparateur::c_Egal)
+    };
+    cond->AjouterModifProba(1, conditionGuerrier);
+    Evt* evt = this->AjouterEvt("Duel d'acceptation");
+
+    this->m_GenerateurEvt->AjouterEffetNarration("Un de vos frères d'armes vous juge trop faible pour mériter de servir dans son unité. Il vous déclare en duel pour vous forcer à prouver votre force et votre courage");
+
+    NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
+    return noeudLieuProbable;
+}
+
 void GenHistSkaven::GenererSelectionneurRegulier()
 {
-    this->m_HistoireGeneree->m_CallbackFunctions["CalculEtMajStatutSocial"] = &CalculEtMajStatutSocial;
+    QVector<NoeudProbable*> evenementsPossibles = {};
 
-    Evt* regulier = this->AjouterEvt("regulier", "Événement régulier");
-    Effet* effet = this->m_GenerateurEvt->AjouterEffetNarration("essai temporaire", "", "", regulier);
+    evenementsPossibles.push_back(GenererSacrificeAuRatCornu());
+    evenementsPossibles.push_back(GenererGuerreCivileDeClan());
+    evenementsPossibles.push_back(DuelAcceptation());
+
+    /*Evt* regulier = */this->AjouterEvt("regulier", "Événement régulier");
+    Effet* effet = this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(evenementsPossibles, "sel_regulier"/*, "youpi sélection", regulier*/);
+
+    // actions récurrentes à chaque cycle d'un mois :
+    this->m_HistoireGeneree->m_CallbackFunctions["CalculEtMajStatutSocial"] = &CalculEtMajStatutSocial;
     effet->m_FonctionsAppellees.push_back(new AppelCallback("CalculEtMajStatutSocial"));
 }
 

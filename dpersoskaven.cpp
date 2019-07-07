@@ -92,6 +92,8 @@ Lieu* DPersoSkaven::GetLieu()
 Clan* DPersoSkaven::GetClan()
 {
     QString cheminBanniere = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_CLAN);
+    if ( cheminBanniere == "")
+        return nullptr;
     return GetUniversSkaven()->GetClanViaBanniere(cheminBanniere);
 }
 
@@ -228,6 +230,16 @@ void DPersoSkaven::RafraichirAffichage()
     }
 
     MajCheminImage(CheminImagePortrait);
+
+    // mettre à jour la bannière de clan en fonction du clan choisi
+    Clan* clan = GetClan();
+    if ( clan != nullptr ) {
+        Carac* caracClan = GestionnaireCarac::GetGestionnaireCarac()->GetCarac(UniversSkaven::CARAC_CLAN);
+        if ( caracClan != nullptr ) {
+            caracClan->m_DataCarac.m_Description = clan->m_Description;
+            caracClan->SetImg(clan->m_CheminBanniere);
+        }
+    }
 
     DPerso::RafraichirAffichage();
 }
