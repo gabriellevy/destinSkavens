@@ -46,6 +46,24 @@ void DPersoSkaven::InitialiserPerso()
     GestionnaireCarac::GetGestionnaireCarac()->AjouterCarac(caracLieu);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_LIEU);
 
+    Carac* caracMalepierre = new Carac(UniversSkaven::CARAC_MALEPIERRE,
+                             UniversSkaven::CARAC_MALEPIERRE,
+                                 "0",
+                                 "",
+                                 "grammes de malepierre",
+                             MODE_AFFICHAGE::ma_Nombre);
+    GestionnaireCarac::GetGestionnaireCarac()->AjouterCarac(caracMalepierre);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_MALEPIERRE);
+
+    Carac* caracStatut = new Carac(UniversSkaven::CARAC_STATUT,
+                             UniversSkaven::CARAC_STATUT,
+                                 "0",
+                                 "",
+                                 "Statut social parmi les autres skavens",
+                             MODE_AFFICHAGE::ma_Nombre);
+    GestionnaireCarac::GetGestionnaireCarac()->AjouterCarac(caracStatut);
+    m_CaracsAAfficher.push_back(UniversSkaven::CARAC_STATUT);
+
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_FOURRURE);
     m_CaracsAAfficher.push_back(UniversSkaven::CARAC_TAILLE);
 
@@ -60,6 +78,8 @@ UniversSkaven* DPersoSkaven::GetUniversSkaven()
 Profession* DPersoSkaven::GetProfession()
 {
     QString idProfession = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_PROF);
+    if ( idProfession == "" )
+        return nullptr;
     return GetUniversSkaven()->GetProfession(idProfession);
 }
 

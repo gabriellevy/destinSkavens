@@ -17,6 +17,9 @@ QString UniversSkaven::CARAC_PROF = "Profession";
 QString UniversSkaven::CARAC_LIEU = "Lieu";
 QString UniversSkaven::CARAC_FOURRURE = "Fourrure";
 QString UniversSkaven::CARAC_TAILLE = "Taille";
+QString UniversSkaven::CARAC_STATUT = "Statut";
+QString UniversSkaven::CARAC_MALEPIERRE = "Malepierre";
+QString UniversSkaven::CARAC_PEUR = "Peur";
 
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {

@@ -36,6 +36,9 @@ public:
     static QString CARAC_LIEU;
     static QString CARAC_FOURRURE;
     static QString CARAC_TAILLE;
+    static QString CARAC_STATUT;
+    static QString CARAC_MALEPIERRE; // grammes
+    static QString CARAC_PEUR; // c'est la peur qui repose sur des actions temporaires du héros comme une intimidation. Il diminue avec le temps et affecte le statut social
 
     QVector<Clan*> m_TousLesClans;
     QVector<Lieu*> m_TousLesLieux;

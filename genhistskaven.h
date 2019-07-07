@@ -9,6 +9,7 @@ class GenHistSkaven : public GenHistoire
 {
 private:
     void GenererEvtsAccueil();
+    void GenererSelectionneurRegulier();
     virtual void GenererFonctionsCallback();
     virtual void GenererPersos();
 

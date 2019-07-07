@@ -23,6 +23,7 @@ Hist* GenHistSkaven::GenererHistoire()
     GenererCaracs();
 
     GenererEvtsAccueil();
+    GenererSelectionneurRegulier();
 
     return m_HistoireGeneree;
 }
@@ -182,6 +183,38 @@ void GenererTexteNaissance()
     Univers::ME->GetExecHistoire()->EffetActuel()->m_Text = texte;
 }
 
+
+bool CalculEtMajStatutSocial(QVector<QString>, QVector<QString>)
+{
+    int statut = 0;
+    Profession* profession = GetUniversSkaven()->GetProfession(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_PROF));
+
+    if ( profession  != nullptr)
+        statut += profession->m_StatutSocial;
+
+    int taille = GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_TAILLE);
+    if ( taille > 0 )
+        statut += (taille - 90)/2;
+
+    statut += (GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_MALEPIERRE))/250;
+
+    statut += GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_PEUR);
+
+    GestionnaireCarac::SetValeurACaracId(UniversSkaven::CARAC_STATUT,
+                                         QString::number(statut));
+
+    return true;
+}
+
+void GenHistSkaven::GenererSelectionneurRegulier()
+{
+    this->m_HistoireGeneree->m_CallbackFunctions["CalculEtMajStatutSocial"] = &CalculEtMajStatutSocial;
+
+    Evt* regulier = this->AjouterEvt("regulier", "Événement régulier");
+    Effet* effet = this->m_GenerateurEvt->AjouterEffetNarration("essai temporaire", "", "", regulier);
+    effet->m_FonctionsAppellees.push_back(new AppelCallback("CalculEtMajStatutSocial"));
+}
+
 void GenHistSkaven::GenererEvtsAccueil()
 {
     /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
@@ -189,7 +222,6 @@ void GenHistSkaven::GenererEvtsAccueil()
     GenererEffetSelectionLieu();
     GenererEffetSelectionFourrure();
     GenererEffetSelectionMetier();
-    this->m_GenerateurEvt->AjouterEffetCallbackDisplay( &GenererTexteNaissance);
-
-    this->m_GenerateurEvt->AjouterEffetNarration( "heu rien du tout");
+    Effet* naissance = this->m_GenerateurEvt->AjouterEffetCallbackDisplay( &GenererTexteNaissance);
+    naissance->m_GoToEvtId = "regulier";
 }
