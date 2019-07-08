@@ -3,11 +3,12 @@
 #include "dpersoskaven.h"
 #include "profession.h"
 #include "../destinLib/gestionnairecarac.h"
+#include "evts/guerrecivileclan.h"
+#include "evts/duelacceptation.h"
+#include "evts/sacrificeratcornu.h"
+#include "arme.h"
 
-GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree)
-{
-
-}
+GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree) {}
 
  void GenHistSkaven::GenererFonctionsCallback()
 {
@@ -206,42 +207,19 @@ bool CalculEtMajStatutSocial(QVector<QString>, QVector<QString>)
     return true;
 }
 
-NoeudProbable* GenHistSkaven::GenererGuerreCivileDeClan()
-{
-    Condition* cond = new Condition(0.005);
-    Evt* evt = this->AjouterEvt("GuerreCivileDeClan", "GuerreCivileDeClan");
-
-    /*Effet* annonce = */this->m_GenerateurEvt->AjouterEffetNarration("Une terrible rébellion s'est déclenché dans votre clan.");
-
-    NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
-    return noeudLieuProbable;
-}
-
-NoeudProbable* GenHistSkaven::GenererSacrificeAuRatCornu()
-{
-    Condition* cond = new Condition(0.05);
-    Evt* evt = this->AjouterEvt("Sacrifice au rat cornu", "Sacrifice au rat cornu");
-
-    /*Effet* annonce = */this->m_GenerateurEvt->AjouterEffetNarration("C'est jour de fête dans tout le terrier ! Un grand sacrifice au rat cornu, votre dieu suprême, va être réalisé.");
-
-    NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
-    return noeudLieuProbable;
-}
-
-NoeudProbable* GenHistSkaven::DuelAcceptation()
+NoeudProbable* GenHistSkaven::DroitALaReproduction()
 {
     Condition* cond = new Condition(0.0);
-    QList<Condition*> conditionVermine = {
-        new Condition(UniversSkaven::CARAC_PROF, Profession::GetNomProfession(TypeProfession::Vermine_de_choc), Comparateur::c_Egal)
+    QList<Condition*> conditionStatut = {
+        new Condition(UniversSkaven::CARAC_STATUT, "250", Comparateur::c_Superieur)
     };
-    cond->AjouterModifProba(1, conditionVermine);
-    QList<Condition*> conditionGuerrier = {
-        new Condition(UniversSkaven::CARAC_PROF, Profession::GetNomProfession(TypeProfession::Guerrier_des_clans), Comparateur::c_Egal)
-    };
-    cond->AjouterModifProba(1, conditionGuerrier);
-    Evt* evt = this->AjouterEvt("Duel d'acceptation");
+    cond->AjouterModifProba(0.3, conditionStatut);
 
-    this->m_GenerateurEvt->AjouterEffetNarration("Un de vos frères d'armes vous juge trop faible pour mériter de servir dans son unité. Il vous déclare en duel pour vous forcer à prouver votre force et votre courage");
+    Evt* evt = this->AjouterEvt("DroitALaReproduction");
+
+    this->m_GenerateurEvt->AjouterEffetNarration(
+                "Grâce au respect et à la peur que vous inspirez dans le terrier vous avez été jugé digne d'accéder à la preoduction avec une femelle skaven ! Puisse votre descendance être innombrable !"
+                );
 
     NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);
     return noeudLieuProbable;
@@ -251,9 +229,11 @@ void GenHistSkaven::GenererSelectionneurRegulier()
 {
     QVector<NoeudProbable*> evenementsPossibles = {};
 
-    evenementsPossibles.push_back(GenererSacrificeAuRatCornu());
-    evenementsPossibles.push_back(GenererGuerreCivileDeClan());
-    evenementsPossibles.push_back(DuelAcceptation());
+    evenementsPossibles.push_back(EVT::GenererSacrificeAuRatCornu(this));
+    evenementsPossibles.push_back(EVT::GenererGuerreCivileDeClan(this));
+    evenementsPossibles.push_back(EVT::DuelAcceptation(this));
+    evenementsPossibles.push_back(DroitALaReproduction());
+    evenementsPossibles.push_back(EVT::RecompenseArmeSkyre(this));
 
     /*Evt* regulier = */this->AjouterEvt("regulier", "Événement régulier");
     Effet* effet = this->m_GenerateurEvt->AjouterEffetSelecteurDEvt(evenementsPossibles, "sel_regulier"/*, "youpi sélection", regulier*/);

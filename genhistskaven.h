@@ -33,9 +33,7 @@ protected:
     Effet* GenererEffetSelectionMetier();
 
     // événements de narration (vie courante)
-    NoeudProbable* GenererSacrificeAuRatCornu();
-    NoeudProbable* GenererGuerreCivileDeClan();
-    NoeudProbable* DuelAcceptation();
+NoeudProbable* DroitALaReproduction();
 };
 
 #endif // GENHISTSKAVEN_H

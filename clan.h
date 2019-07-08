@@ -40,6 +40,8 @@ public:
     float m_Puissance;
 
     //DPersoSkaven* m_Chef = nullptr;
+
+    static QString GetNomClan(TypeClan typeClan);
 };
 
 #endif // CLAN_H

@@ -43,9 +43,9 @@ void UniversSkaven::GenererLieu(TypeLieu typeLieu)
     m_TousLesLieux.push_back(lieu);
 }
 
-void UniversSkaven::GenererClan(TypeClan typeClan, QString nom, float puissance, QString description, QString chemin)
+void UniversSkaven::GenererClan(TypeClan typeClan, float puissance, QString description, QString chemin)
 {
-    Clan* clan = new Clan(typeClan, nom, puissance, description, chemin);
+    Clan* clan = new Clan(typeClan, Clan::GetNomClan(typeClan), puissance, description, chemin);
     m_TousLesClans.push_back(clan);
 }
 
@@ -133,97 +133,78 @@ void UniversSkaven::GenererToutesLesProfessions()
 void UniversSkaven::GenererTousLesClans()
 {
     this->GenererClan(TypeClan::Rictus,
-                      "Rictus",
                       400.0f,
                       "Le Clan Rictus est connu pour le grand nombre d’esclaves qu’il détient. Il est actuellement sous la coupe du Seigneur Kratch, c'est l’un des Clans Guerriers les plus importants.",
                       ":/images/clans/Rictus.jpg");
     this->GenererClan(TypeClan::Mors,
-                      "Mors",
                       800.0f,
                       "",
                       ":/images/clans/Mors.jpg");
     this->GenererClan(TypeClan::Skab,
-                      "Skab",
                       450.0f,
                       "",
                       ":/images/clans/Skab.png");
     this->GenererClan(TypeClan::Pestilens,
-                      "Pestilens",
                       900.0f,
                       "",
                       ":/images/clans/Pestilens.png");
     this->GenererClan(TypeClan::Septik,
-                      "Septik",
                       200.0f,
                       "",
                       ":/images/clans/Septik.jpg");
     this->GenererClan(TypeClan::Skrat,
-                      "Skrat",
                       200.0f,
                       "",
                       ":/images/clans/Skrat.jpg");
     this->GenererClan(TypeClan::Gratzz,
-                      "Gratzz",
                       200.0f,
                       "",
                       ":/images/clans/Gratzz.jpg");
     this->GenererClan(TypeClan::Morbidus,
-                      "Morbidus",
                       200.0f,
                       "",
                       ":/images/clans/Morbidus.png");
     this->GenererClan(TypeClan::Scorbut,
-                      "Scorbut",
                       200.0f,
                       "",
                       ":/images/clans/Scorbut.jpg");
     this->GenererClan(TypeClan::Krizzor,
-                      "Krizzor",
                       200.0f,
                       "",
                       ":/images/clans/Krizzor.jpg");
     this->GenererClan(TypeClan::Liskit,
-                      "Liskit",
                       200.0f,
                       "",
                       ":/images/clans/Liskit.jpg");
     this->GenererClan(TypeClan::Festus,
-                      "Festus",
                       200.0f,
                       "",
                       ":/images/clans/Festus.jpg");
     this->GenererClan(TypeClan::Raklur,
-                      "Raklur",
                       200.0f,
                       "",
                       ":/images/clans/Raklur.jpg");
     this->GenererClan(TypeClan::Eshin,
-                      "Eshin",
                       900.0f,
                       "",
                       ":/images/clans/Eshin.png");
     this->GenererClan(TypeClan::Moulder,
-                      "Moulder",
                       900.0f,
                       "",
                       ":/images/clans/Moulder.jpg");
     this->GenererClan(TypeClan::Skyre,
-                      "Skyre",
                       1000.0f,
                       "",
                       ":/images/clans/Skyre.png");
     this->GenererClan(TypeClan::Mordkin,
-                      "Mordkin",
                       150.0f,
                       "",
                       ":/images/clans/Mordkin.png");
     this->GenererClan(TypeClan::Grutnik,
-                      "Grutnik",
                       150.0f,
                       "",
                       ":/images/clans/Grutnik.png");
     this->GenererClan(TypeClan::Volkn,
-                      "Volkn",
                       200.0f,
                       "",
                       ":/images/clans/Volkn.jpg");

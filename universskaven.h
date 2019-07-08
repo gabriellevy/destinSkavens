@@ -25,7 +25,7 @@ public:
 
     void GenererProfession(TypeProfession typeProfession);
     void GenererLieu(TypeLieu typeLieu);
-    void GenererClan(TypeClan typeClan, QString nom, float puissance, QString description, QString chemin);
+    void GenererClan(TypeClan typeClan, float puissance, QString description, QString chemin);
     void GenererTousLesClans();
     void GenererToutesLesProfessions();
     void GenererTousLesLieux();

@@ -23,6 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 CONFIG += resources_big
 
+include(evts/evts.pri)
+
 SOURCES += \
     ../destinLib/selectionneurdenoeud.cpp \
     ../destinLib/univers.cpp \
@@ -49,6 +51,7 @@ SOURCES += \
     ../destinLib/reglages.cpp \
     ../destinLib/dbmanager.cpp \
     ../destinLib/gestionnairecarac.cpp \
+    arme.cpp \
     clan.cpp \
     aspectratiolabel.cpp \
     dpersoskaven.cpp \
@@ -83,6 +86,7 @@ HEADERS += \
     ../destinLib/reglages.h \
     ../destinLib/dbmanager.h \
     ../destinLib/gestionnairecarac.h \
+    arme.h \
     aspectratiolabel.h \
     clan.h \
     dpersoskaven.h \
