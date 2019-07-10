@@ -218,7 +218,8 @@ NoeudProbable* GenHistSkaven::DroitALaReproduction()
     Evt* evt = this->AjouterEvt("DroitALaReproduction");
 
     this->m_GenerateurEvt->AjouterEffetNarration(
-                "Grâce au respect et à la peur que vous inspirez dans le terrier vous avez été jugé digne d'accéder à la preoduction avec une femelle skaven ! Puisse votre descendance être innombrable !"
+                "Grâce au respect et à la peur que vous inspirez dans le terrier vous avez été jugé digne d'accéder à la preoduction avec une femelle skaven ! Puisse votre descendance être innombrable !",
+                ":/images/evts/FemelleSkaven.jpg"
                 );
 
     NoeudProbable* noeudLieuProbable = new NoeudProbable(evt, cond);

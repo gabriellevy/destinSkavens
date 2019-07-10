@@ -23,7 +23,13 @@ enum class TypeClan : char {
     Mordkin,
     Grutnik,
     Charogne,
-    Volkn
+    Volkn,
+    Treecherik,
+    Skaar,
+    Scruten,
+    Skaul,
+    Flem,
+    Sleekit
 };
 
 class Clan

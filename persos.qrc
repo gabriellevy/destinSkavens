@@ -55,5 +55,12 @@
         <file>images/clans/Skrat.jpg</file>
         <file>images/clans/Skyre.png</file>
         <file>images/clans/Volkn.jpg</file>
+        <file>images/evts/FemelleSkaven.jpg</file>
+        <file>images/clans/Flem.jpg</file>
+        <file>images/clans/Scruten.jpg</file>
+        <file>images/clans/Skaar.png</file>
+        <file>images/clans/Skaul.png</file>
+        <file>images/clans/Sleekit.png</file>
+        <file>images/clans/Treecherik.jpg</file>
     </qresource>
 </RCC>
