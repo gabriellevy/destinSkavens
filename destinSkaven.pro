@@ -26,6 +26,9 @@ CONFIG += resources_big
 include(evts/evts.pri)
 
 SOURCES += \
+    ../destinLib/aleatoire.cpp \
+    ../destinLib/execlancerde.cpp \
+    ../destinLib/lancerde.cpp \
     ../destinLib/selectionneurdenoeud.cpp \
     ../destinLib/univers.cpp \
     ../destinLib/histoire.cpp \
@@ -62,6 +65,9 @@ SOURCES += \
     lieu.cpp
 
 HEADERS += \
+    ../destinLib/aleatoire.h \
+    ../destinLib/execlancerde.h \
+    ../destinLib/lancerde.h \
     ../destinLib/selectionneurdenoeud.h \
     ../destinLib/univers.h \
     ../destinLib/histoire.h \
@@ -103,6 +109,7 @@ FORMS += \
     ../destinLib/evt.ui \
     ../destinLib/histoire.ui \
     ../destinLib/noeud.ui \
+    ../destinLib/lancerde.ui \
     ../destinLib/perso.ui
 
 # Default rules for deployment.

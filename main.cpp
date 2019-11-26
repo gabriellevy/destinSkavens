@@ -8,8 +8,7 @@ int main(int argc, char *argv[])
 
     // lancer le jeu :
     UniversSkaven av(ModeAffichage::ema_Jeu);
-    Hist* hist = av.ExecuterGenerateurHistoire();
-    av.LancerHistoire(hist);
+    av.LancerHistoire(UniversSkaven::VIE_SKAVEN, nullptr, "", "", true);
     av.show();
 
     return a.exec();

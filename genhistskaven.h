@@ -14,7 +14,7 @@ private:
     virtual void GenererPersos();
 
 public:
-    GenHistSkaven(Hist* histoireGeneree);
+    GenHistSkaven();
 
     virtual Hist* GenererHistoire();
 

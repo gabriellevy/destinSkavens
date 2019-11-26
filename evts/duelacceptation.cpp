@@ -6,7 +6,7 @@
 namespace EVT {
     NoeudProbable* DuelAcceptation(GenHistSkaven* genHist)
     {
-        Condition* cond = new Condition(0.0);
+        Condition* cond = new Condition(0.0, p_Relative);
         QList<Condition*> conditionVermine = {
             new Condition(UniversSkaven::CARAC_PROF, Profession::GetNomProfession(TypeProfession::Vermine_de_choc), Comparateur::c_Egal)
         };

@@ -1,12 +1,18 @@
 #include "universskaven.h"
 #include "ui_univers.h"
+#include "genhistskaven.h"
 #include <QTime>
+
+QString UniversSkaven::VIE_SKAVEN = "Vie Skaven";
 
 UniversSkaven::UniversSkaven(ModeAffichage modeAffichage,
                          QWidget *parent)
     : Univers(parent, modeAffichage)
 {
     this->AppliquerTheme(QColor(54, 46, 43));
+
+
+    m_GensHistoire[UniversSkaven::VIE_SKAVEN] = new GenHistSkaven();
 
     QTime time = QTime::currentTime();
     qsrand(static_cast<uint>(time.msec()));
@@ -24,8 +30,8 @@ QString UniversSkaven::CARAC_PEUR = "Peur";
 Hist* UniversSkaven::ExecuterGenerateurHistoire()
 {
     m_Histoire = new Hist("Vie de Skaven");
-    m_GenHistoire = new GenHistSkaven(m_Histoire);
-    m_GenHistoire->GenererHistoire();
+    //m_GenHistoire = new GenHistSkaven(m_Histoire);
+    //m_GenHistoire->GenererHistoire();
     this->setWindowTitle(m_Histoire->m_Titre);
 
     return m_Histoire;

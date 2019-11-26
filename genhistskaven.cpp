@@ -8,7 +8,7 @@
 #include "evts/sacrificeratcornu.h"
 #include "arme.h"
 
-GenHistSkaven::GenHistSkaven(Hist* histoireGeneree):GenHistoire (histoireGeneree) {}
+GenHistSkaven::GenHistSkaven():GenHistoire () {}
 
  void GenHistSkaven::GenererFonctionsCallback()
 {
@@ -90,7 +90,7 @@ Effet* GenHistSkaven::GenererEffetSelectionClan()
         Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
                     UniversSkaven::CARAC_CLAN, clan->m_CheminBanniere);
 
-        NoeudProbable* noeudClanProbable = new NoeudProbable(noeudClan, new Condition(1.0));
+        NoeudProbable* noeudClanProbable = new NoeudProbable(noeudClan, new Condition(1.0, p_Relative));
 
         clansPossibles.push_back(noeudClanProbable);
     }
@@ -105,7 +105,7 @@ Effet* GenHistSkaven::GenererEffetSelectionFourrure()
     auto creerSelectionFourrure = [&fourruresPossibles, this](QString couleurFourrure, double proba) {
             Noeud* noeudClan = this->m_GenerateurEvt->GenererNoeudModificateurCarac(
                         UniversSkaven::CARAC_FOURRURE, couleurFourrure);
-            NoeudProbable* noeudLieuProbable = new NoeudProbable(noeudClan, new Condition(proba));
+            NoeudProbable* noeudLieuProbable = new NoeudProbable(noeudClan, new Condition(proba, p_Relative));
             fourruresPossibles.push_back(noeudLieuProbable);
     };
     creerSelectionFourrure("Gris et cornu", 0.001);
@@ -141,8 +141,10 @@ UniversSkaven* GetUniversSkaven()
 
 void GenererTexteNaissance()
 {
-    Lieu* lieu = GetUniversSkaven()->GetLieu(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_LIEU));
-    Clan* clan = GetUniversSkaven()->GetClanViaBanniere(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_CLAN));
+    Lieu* lieu = GetUniversSkaven()->GetLieu(
+                DPersoSkaven::GetSkaven()->GetValeurCarac(UniversSkaven::CARAC_LIEU));
+    Clan* clan = GetUniversSkaven()->GetClanViaBanniere(
+                DPersoSkaven::GetSkaven()->GetValeurCarac(UniversSkaven::CARAC_CLAN));
     QString lieu_description = lieu->m_Description;
     if ( lieu_description == lieu->m_Nom)
         lieu_description = "";
@@ -157,7 +159,7 @@ void GenererTexteNaissance()
 
     int taille = 90 + (qrand()%10)*10 + qrand()%10;
 
-    QString fourrure = GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_FOURRURE);
+    QString fourrure = DPersoSkaven::GetSkaven()->GetValeurCarac(UniversSkaven::CARAC_FOURRURE);
     texte += "Votre fourrure est " + fourrure + ".";
     if ( fourrure == "Gris et cornu" )
         texte += " Vos cornes et votre fourrure grise sont le signe de la marque du rat cornu. Vous êtes promis à un brillant avenir loin au dessus de la piétaille qui vous entourait lors de votre naissance.";
@@ -181,25 +183,26 @@ void GenererTexteNaissance()
 
     Univers::ME->GetPersoInterface()->RafraichirAffichage();
 
-    Univers::ME->GetExecHistoire()->EffetActuel()->m_Text = texte;
+    Univers::ME->GetExecHistoire()->EffetActuel()->m_Texte = texte;
 }
 
 
 bool CalculEtMajStatutSocial(QVector<QString>, QVector<QString>)
 {
     int statut = 0;
-    Profession* profession = GetUniversSkaven()->GetProfession(GestionnaireCarac::GetCaracValue(UniversSkaven::CARAC_PROF));
+    Profession* profession = GetUniversSkaven()->GetProfession(
+                DPersoSkaven::GetSkaven()->GetValeurCarac(UniversSkaven::CARAC_PROF));
 
     if ( profession  != nullptr)
         statut += profession->m_StatutSocial;
 
-    int taille = GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_TAILLE);
+    int taille = DPersoSkaven::GetSkaven()->GetValeurCaracAsInt(UniversSkaven::CARAC_TAILLE);
     if ( taille > 0 )
         statut += (taille - 90)/2;
 
-    statut += (GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_MALEPIERRE))/250;
+    statut += (DPersoSkaven::GetSkaven()->GetValeurCaracAsInt(UniversSkaven::CARAC_MALEPIERRE))/250;
 
-    statut += GestionnaireCarac::GetCaracValueAsInt(UniversSkaven::CARAC_PEUR);
+    statut += DPersoSkaven::GetSkaven()->GetValeurCaracAsInt(UniversSkaven::CARAC_PEUR);
 
     GestionnaireCarac::SetValeurACaracId(UniversSkaven::CARAC_STATUT,
                                          QString::number(statut));
@@ -209,7 +212,7 @@ bool CalculEtMajStatutSocial(QVector<QString>, QVector<QString>)
 
 NoeudProbable* GenHistSkaven::DroitALaReproduction()
 {
-    Condition* cond = new Condition(0.0);
+    Condition* cond = new Condition(0.0, p_Relative);
     QList<Condition*> conditionStatut = {
         new Condition(UniversSkaven::CARAC_STATUT, "250", Comparateur::c_Superieur)
     };

@@ -48,6 +48,8 @@ public:
     Clan* GetClan(QString idClan);
     Clan* GetClanViaBanniere(QString banniere);
     Lieu* GetLieu(QString idLieu);
+
+    static QString VIE_SKAVEN;
 protected:
 };
 

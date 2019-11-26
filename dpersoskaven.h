@@ -35,6 +35,9 @@ public:
     Profession* GetProfession();
     Clan* GetClan();
     Lieu* GetLieu();
+
+    static DPersoSkaven* GetSkaven();
+    static DPersoSkaven* ME;
 };
 
 #endif // DPERSOSKAVEN_H

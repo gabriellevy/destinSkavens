@@ -6,7 +6,7 @@
 namespace EVT {
     NoeudProbable* RecompenseArmeSkyre(GenHistSkaven* genHist)
     {
-        Condition* cond = new Condition(0.0);
+        Condition* cond = new Condition(0.0, p_Relative);
         QList<Condition*> conditionStatut = {
             new Condition(UniversSkaven::CARAC_STATUT, "250", Comparateur::c_Superieur)
         };
